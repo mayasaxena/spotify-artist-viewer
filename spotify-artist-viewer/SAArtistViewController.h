@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SAArtist;
+
 @interface SAArtistViewController : UIViewController
+
+- (instancetype) initWithArtist:(SAArtist *)artist;
 
 @end

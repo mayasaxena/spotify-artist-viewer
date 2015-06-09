@@ -7,6 +7,10 @@
 
 #import "SAArtist.h"
 
+@interface SAArtist()
+
+@end
+
 @implementation SAArtist
 
 @end

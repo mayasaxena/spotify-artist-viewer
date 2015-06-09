@@ -9,4 +9,9 @@
 
 @interface SAArtist : NSObject
 
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, strong) NSString *bio;
+
+
 @end

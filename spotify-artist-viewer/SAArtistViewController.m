@@ -14,6 +14,7 @@
 
 @implementation SAArtistViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -23,6 +24,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (instancetype) initWithArtist:(SAArtist *)artist {
+    
+    self = [super init];
+    
+    if (self) {
+        
+    }
+    
+    return self;
+    
+}
+
 
 /*
 #pragma mark - Navigation
