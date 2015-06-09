@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7Gt-FP-L1w">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+>>>>>>> c3ba89c6cac84f5318e1122e326d57e981e56ea7
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -7,7 +11,11 @@
         <!--Search View Controller-->
         <scene sceneID="B4C-Pp-CA4">
             <objects>
+<<<<<<< HEAD
                 <viewController storyboardIdentifier="search" id="vuJ-zP-gbN" customClass="SASearchViewController" sceneMemberID="viewController">
+=======
+                <viewController id="vuJ-zP-gbN" customClass="SASearchViewController" sceneMemberID="viewController">
+>>>>>>> c3ba89c6cac84f5318e1122e326d57e981e56ea7
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tNq-q9-8Xb"/>
                         <viewControllerLayoutGuide type="bottom" id="aKJ-a2-Mv8"/>
@@ -20,12 +28,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="znv-8y-698" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="887" y="470"/>
+=======
+            <point key="canvasLocation" x="829.5" y="470"/>
+>>>>>>> c3ba89c6cac84f5318e1122e326d57e981e56ea7
         </scene>
         <!--Artist View Controller-->
         <scene sceneID="jJm-R7-2o8">
             <objects>
+<<<<<<< HEAD
                 <viewController storyboardIdentifier="artist" id="JNY-7W-JDv" customClass="SAArtistViewController" sceneMemberID="viewController">
+=======
+                <viewController id="JNY-7W-JDv" customClass="SAArtistViewController" sceneMemberID="viewController">
+>>>>>>> c3ba89c6cac84f5318e1122e326d57e981e56ea7
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A04-6x-noi"/>
                         <viewControllerLayoutGuide type="bottom" id="cfh-bF-LMK"/>
