@@ -16,6 +16,7 @@
 		2E7674541B2676F400336867 /* SAArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7674531B2676F400336867 /* SAArtist.m */; };
 		2E7674571B26772600336867 /* SARequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7674561B26772600336867 /* SARequestManager.m */; };
 		A5DDCEC81B275EFB00EF5F76 /* SASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCEC71B275EFB00EF5F76 /* SASearchViewController.m */; };
+		A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		2E7674561B26772600336867 /* SARequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARequestManager.m; path = Networking/SARequestManager.m; sourceTree = "<group>"; };
 		A5DDCEC61B275EFB00EF5F76 /* SASearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASearchViewController.h; sourceTree = "<group>"; };
 		A5DDCEC71B275EFB00EF5F76 /* SASearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASearchViewController.m; sourceTree = "<group>"; };
+		A5DDCEC91B275FE900EF5F76 /* SAArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAArtistViewController.h; sourceTree = "<group>"; };
+		A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAArtistViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				A5DDCEC61B275EFB00EF5F76 /* SASearchViewController.h */,
 				A5DDCEC71B275EFB00EF5F76 /* SASearchViewController.m */,
 				2E7674341B26766200336867 /* Main.storyboard */,
+				A5DDCEC91B275FE900EF5F76 /* SAArtistViewController.h */,
+				A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */,
 				2E7674371B26766200336867 /* Images.xcassets */,
 				2E7674391B26766200336867 /* LaunchScreen.xib */,
 				2E76742A1B26766200336867 /* Supporting Files */,
@@ -246,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7674541B2676F400336867 /* SAArtist.m in Sources */,
+				A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */,
 				A5DDCEC81B275EFB00EF5F76 /* SASearchViewController.m in Sources */,
 				2E7674301B26766200336867 /* AppDelegate.m in Sources */,
 				2E76742D1B26766200336867 /* main.m in Sources */,
