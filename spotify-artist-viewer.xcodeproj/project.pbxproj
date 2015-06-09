@@ -17,6 +17,7 @@
 		2E7674571B26772600336867 /* SARequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7674561B26772600336867 /* SARequestManager.m */; };
 		A5DDCEC81B275EFB00EF5F76 /* SASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCEC71B275EFB00EF5F76 /* SASearchViewController.m */; };
 		A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */; };
+		A5DDCECE1B27769500EF5F76 /* SASearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECD1B27769500EF5F76 /* SASearchTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		A5DDCEC71B275EFB00EF5F76 /* SASearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASearchViewController.m; sourceTree = "<group>"; };
 		A5DDCEC91B275FE900EF5F76 /* SAArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAArtistViewController.h; sourceTree = "<group>"; };
 		A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAArtistViewController.m; sourceTree = "<group>"; };
+		A5DDCECC1B27769500EF5F76 /* SASearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASearchTableViewController.h; sourceTree = "<group>"; };
+		A5DDCECD1B27769500EF5F76 /* SASearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASearchTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				A5DDCEC61B275EFB00EF5F76 /* SASearchViewController.h */,
 				A5DDCEC71B275EFB00EF5F76 /* SASearchViewController.m */,
 				2E7674341B26766200336867 /* Main.storyboard */,
+				A5DDCECC1B27769500EF5F76 /* SASearchTableViewController.h */,
+				A5DDCECD1B27769500EF5F76 /* SASearchTableViewController.m */,
 				A5DDCEC91B275FE900EF5F76 /* SAArtistViewController.h */,
 				A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */,
 				2E7674371B26766200336867 /* Images.xcassets */,
@@ -253,6 +258,7 @@
 				2E7674541B2676F400336867 /* SAArtist.m in Sources */,
 				A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */,
 				A5DDCEC81B275EFB00EF5F76 /* SASearchViewController.m in Sources */,
+				A5DDCECE1B27769500EF5F76 /* SASearchTableViewController.m in Sources */,
 				2E7674301B26766200336867 /* AppDelegate.m in Sources */,
 				2E76742D1B26766200336867 /* main.m in Sources */,
 				2E7674571B26772600336867 /* SARequestManager.m in Sources */,

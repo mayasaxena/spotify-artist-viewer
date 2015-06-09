@@ -12,6 +12,6 @@
 
 @interface SAArtistViewController : UIViewController
 
-- (instancetype) initWithArtist:(SAArtist *)artist;
+@property (strong, nonatomic) SAArtist *artist;
 
 @end

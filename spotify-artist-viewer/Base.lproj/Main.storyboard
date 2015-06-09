@@ -8,20 +8,45 @@
         <scene sceneID="B4C-Pp-CA4">
             <objects>
                 <viewController storyboardIdentifier="search" id="vuJ-zP-gbN" customClass="SASearchViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tNq-q9-8Xb"/>
-                        <viewControllerLayoutGuide type="bottom" id="aKJ-a2-Mv8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Yj5-AE-JnS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <navigationItem key="navigationItem" id="l4v-0R-jad"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="znv-8y-698" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829.5" y="470"/>
+            <point key="canvasLocation" x="1789.5" y="450"/>
+        </scene>
+        <!--Search Table View Controller-->
+        <scene sceneID="rSx-mi-pj8">
+            <objects>
+                <tableViewController id="Evx-U1-BXd" customClass="SASearchTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="sdM-w7-ouW">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Spotify Artists" id="CsP-hH-2XD">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Evx-U1-BXd" id="P4Z-z6-pKI"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistCell" rowHeight="50" id="kCx-gZ-SMV">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kCx-gZ-SMV" id="7EP-yG-K1a">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Evx-U1-BXd" id="mZ0-6S-KZg"/>
+                            <outlet property="delegate" destination="Evx-U1-BXd" id="4Mf-8e-UK1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="pUC-5J-c6j"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="My8-xU-hmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="853.5" y="450"/>
         </scene>
         <!--Artist View Controller-->
         <scene sceneID="jJm-R7-2o8">
@@ -39,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czm-gz-rZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1570.5" y="470"/>
+            <point key="canvasLocation" x="2614.5" y="450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5SG-Xt-sdH">
@@ -52,12 +77,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vuJ-zP-gbN" kind="relationship" relationship="rootViewController" id="JaM-7I-JT2"/>
+                        <segue destination="Evx-U1-BXd" kind="relationship" relationship="rootViewController" id="dse-ry-g9C"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSF-vD-38K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-88.5" y="470"/>
+            <point key="canvasLocation" x="-94.5" y="450"/>
         </scene>
     </scenes>
 </document>

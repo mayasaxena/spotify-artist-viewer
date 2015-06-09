@@ -1,5 +1,5 @@
 //
-//  SASearchViewController.h
+//  SASearchTableViewController.h
 //  spotify-artist-viewer
 //
 //  Created by Maya Saxena on 6/9/15.
@@ -8,5 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SASearchViewController : UIViewController
+@interface SASearchTableViewController : UITableViewController
+
 @end

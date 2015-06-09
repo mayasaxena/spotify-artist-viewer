@@ -26,18 +26,6 @@
 }
 
 
-- (instancetype) initWithArtist:(SAArtist *)artist {
-    
-    self = [super init];
-    
-    if (self) {
-        
-    }
-    
-    return self;
-    
-}
-
 
 /*
 #pragma mark - Navigation
