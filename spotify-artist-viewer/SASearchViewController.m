@@ -111,6 +111,28 @@
     return cell;
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"showArtist" sender:tableView];
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier  isEqual: @"showArtist"]) {
+        UIViewController* artistViewController = segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        SAArtist *artist;
+        if (self.isSearching) {
+            artist = self.filteredArtists[indexPath.row];
+        } else {
+            artist = self.artists[indexPath.row];
+        }
+        
+        artistViewController
+    }
+}
+
 - (void)searchForText:(NSString *)searchText {
     
     NSString *predicateFormat = @"name CONTAINS[cd] %@";
