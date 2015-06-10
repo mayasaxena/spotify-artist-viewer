@@ -7,8 +7,10 @@
 //
 
 #import "SAArtistViewController.h"
+#import "SAArtist.h"
 
 @interface SAArtistViewController ()
+
 
 @end
 
@@ -17,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.artistLabel.text = self.artist.name;
+    self.artistBio.text = self.artist.bio;
     // Do any additional setup after loading the view.
 }
 
@@ -24,6 +29,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 

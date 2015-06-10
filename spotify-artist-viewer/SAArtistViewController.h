@@ -13,5 +13,8 @@
 @interface SAArtistViewController : UIViewController
 
 @property (strong, nonatomic) SAArtist *artist;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *artistImage;
+@property (weak, nonatomic) IBOutlet UITextView *artistBio;
 
 @end

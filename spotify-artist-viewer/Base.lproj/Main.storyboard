@@ -54,31 +54,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmb-Ce-OaF" userLabel="Artist name">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmb-Ce-OaF" userLabel="Artist name">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="179" y="127" width="42" height="21"/>
-                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G5U-nE-yt2" userLabel="Artist image">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="150" y="180" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Lcl-wF-YaG"/>
+                                    <constraint firstAttribute="width" constant="100" id="mca-TF-y2h"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Lcl-wF-YaG"/>
+                                        <exclude reference="mca-TF-y2h"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Lcl-wF-YaG"/>
+                                        <include reference="mca-TF-y2h"/>
+                                    </mask>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOn-GH-2jk" userLabel="Artist bio">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="80" y="319" width="240" height="128"/>
-                                </variation>
-                            </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnR-Be-gzz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
@@ -90,27 +90,72 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                 </variation>
                             </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOn-GH-2jk" userLabel="Artist bio">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HOn-GH-2jk" secondAttribute="trailing" constant="16" id="6VM-4a-nv6"/>
+                            <constraint firstItem="zmb-Ce-OaF" firstAttribute="leading" secondItem="IAi-6e-pZW" secondAttribute="leading" constant="66" id="6vB-io-W3c"/>
+                            <constraint firstItem="HOn-GH-2jk" firstAttribute="leading" secondItem="IAi-6e-pZW" secondAttribute="leading" constant="16" id="Chj-5E-uAR"/>
+                            <constraint firstItem="zmb-Ce-OaF" firstAttribute="top" secondItem="A04-6x-noi" secondAttribute="bottom" constant="27" id="MCU-Yl-65H"/>
+                            <constraint firstAttribute="trailing" secondItem="zmb-Ce-OaF" secondAttribute="trailing" constant="66" id="TMB-qm-Gnh"/>
+                            <constraint firstItem="cfh-bF-LMK" firstAttribute="top" secondItem="HOn-GH-2jk" secondAttribute="bottom" constant="8" id="aQX-2l-B7l"/>
+                            <constraint firstItem="HOn-GH-2jk" firstAttribute="top" secondItem="G5U-nE-yt2" secondAttribute="bottom" constant="8" id="aux-KJ-uKh"/>
+                            <constraint firstAttribute="centerX" secondItem="G5U-nE-yt2" secondAttribute="centerX" id="tsF-T5-F2k"/>
+                            <constraint firstItem="G5U-nE-yt2" firstAttribute="top" secondItem="zmb-Ce-OaF" secondAttribute="bottom" constant="21" id="xjo-Nv-gfL"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="zmb-Ce-OaF"/>
                                 <exclude reference="G5U-nE-yt2"/>
-                                <exclude reference="HOn-GH-2jk"/>
                                 <exclude reference="gnR-Be-gzz"/>
+                                <exclude reference="HOn-GH-2jk"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="6vB-io-W3c"/>
+                                <exclude reference="MCU-Yl-65H"/>
+                                <exclude reference="TMB-qm-Gnh"/>
+                                <exclude reference="tsF-T5-F2k"/>
+                                <exclude reference="xjo-Nv-gfL"/>
+                                <exclude reference="6VM-4a-nv6"/>
+                                <exclude reference="Chj-5E-uAR"/>
+                                <exclude reference="aux-KJ-uKh"/>
+                                <exclude reference="aQX-2l-B7l"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="zmb-Ce-OaF"/>
                                 <include reference="G5U-nE-yt2"/>
-                                <include reference="HOn-GH-2jk"/>
                                 <include reference="gnR-Be-gzz"/>
+                                <include reference="HOn-GH-2jk"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="6vB-io-W3c"/>
+                                <include reference="MCU-Yl-65H"/>
+                                <include reference="TMB-qm-Gnh"/>
+                                <include reference="tsF-T5-F2k"/>
+                                <include reference="xjo-Nv-gfL"/>
+                                <include reference="6VM-4a-nv6"/>
+                                <include reference="Chj-5E-uAR"/>
+                                <include reference="aux-KJ-uKh"/>
+                                <include reference="aQX-2l-B7l"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="artistBio" destination="HOn-GH-2jk" id="Nn7-Fi-xzJ"/>
+                        <outlet property="artistImage" destination="G5U-nE-yt2" id="nds-TM-Ap0"/>
+                        <outlet property="artistLabel" destination="zmb-Ce-OaF" id="adE-3J-ea9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czm-gz-rZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
