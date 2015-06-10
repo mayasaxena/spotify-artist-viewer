@@ -9,10 +9,11 @@
 #import "SASearchViewController.h"
 #import "SAArtist.h"
 #import "SAArtistViewController.h"
+#import "SARequestManager.h"
 
 @interface SASearchViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
-@property (strong, nonatomic) NSMutableArray *artists;
+@property (strong, nonatomic) NSArray *artists;
 @property (nonatomic) NSMutableArray *filteredArtists;
 @property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic) BOOL isSearching;
@@ -28,7 +29,7 @@
     
     self.isSearching = NO;
     
-    #pragma mark - SearchController
+    #pragma mark - SearchControllers
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.dimsBackgroundDuringPresentation = NO;
@@ -55,11 +56,18 @@
     bastille.imageURL = [NSURL URLWithString:@"https://s-media-cache-ak0.pinimg.com/236x/89/f2/72/89f27225de8840f0952b0e5a03ea3702.jpg"];;
     bastille.bio = @"A band called Bastille";
     
-    [self.artists addObject:muse];
-    [self.artists addObject:imagineDragons];
-    [self.artists addObject:bastille];
+//    [self.artists addObject:muse];
+//    [self.artists addObject:imagineDragons];
+//    [self.artists addObject:bastille];
     
-
+    [[SARequestManager sharedManager] getArtistsWithQuery:@"Muse"
+                                                  success:^(NSArray *artists) {
+                                                      
+                                                      self.artists = artists;
+                                                  }
+                                                  failure:^(NSError *error) {
+                                                      NSLog(@"%@",error);
+                                                  }];
     
     [self.tableView reloadData];
     
