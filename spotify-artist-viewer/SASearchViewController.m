@@ -10,9 +10,9 @@
 #import "SAArtist.h"
 #import "SAArtistViewController.h"
 
-@interface SASearchViewController () <UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate>
+@interface SASearchViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
-@property (nonatomic) NSMutableArray *artists;
+@property (strong, nonatomic) NSMutableArray *artists;
 @property (nonatomic) NSMutableArray *filteredArtists;
 @property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic) BOOL isSearching;
@@ -31,7 +31,6 @@
     #pragma mark - SearchController
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
     
@@ -43,17 +42,17 @@
     
     SAArtist *muse = [[SAArtist alloc]init];
     muse.name = @"Muse";
-    muse.imageURL = nil;
+    muse.imageURL = [NSURL URLWithString:@"http://data2.whicdn.com/images/7123132/large.jpg"];
     muse.bio = @"A band called Muse";
     
     SAArtist *imagineDragons = [[SAArtist alloc]init];
     imagineDragons.name = @"Imagine Dragons";
-    imagineDragons.imageURL = nil;
+    imagineDragons.imageURL = [NSURL URLWithString:@"http://img2.wikia.nocookie.net/__cb20131222090145/glee/images/0/0a/Radioactive-Imagine-Dragons.jpg"];
     imagineDragons.bio = @"A band called Imagine Dragons";
     
     SAArtist *bastille = [[SAArtist alloc]init];
     bastille.name = @"Bastille";
-    bastille.imageURL = nil;
+    bastille.imageURL = [NSURL URLWithString:@"https://s-media-cache-ak0.pinimg.com/236x/89/f2/72/89f27225de8840f0952b0e5a03ea3702.jpg"];;
     bastille.bio = @"A band called Bastille";
     
     [self.artists addObject:muse];
@@ -156,6 +155,8 @@
     [self.filteredArtists removeAllObjects];
     
     
+    // length query allows empty string to show all
+    // comment out if and else to have empty string show none
     if([searchText length] != 0) {
         self.isSearching = YES;
         [self searchForText:searchText];
@@ -163,7 +164,7 @@
     else {
         self.isSearching = NO;
     }
-    
+
     [self.tableView reloadData];
 }
 

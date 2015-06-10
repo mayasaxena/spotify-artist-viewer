@@ -8,6 +8,7 @@
 
 #import "SAArtistViewController.h"
 #import "SAArtist.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SAArtistViewController ()
 
@@ -22,6 +23,7 @@
     
     self.artistLabel.text = self.artist.name;
     self.artistBio.text = self.artist.bio;
+    [self.artistImage sd_setImageWithURL:self.artist.imageURL];
     // Do any additional setup after loading the view.
 }
 
