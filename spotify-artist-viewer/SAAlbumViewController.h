@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SAAlbum.h"
 
 @interface SAAlbumViewController : UIViewController
 
-@property (strong, nonatomic) SAArtist *artist;
+@property (strong, nonatomic) SAAlbum *album;
+@property (weak, nonatomic) IBOutlet UIImageView *albumImage;
+@property (weak, nonatomic) IBOutlet UILabel *albumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *artistImage;
-@property (weak, nonatomic) IBOutlet UITextView *artistBio;
 
 
 @end

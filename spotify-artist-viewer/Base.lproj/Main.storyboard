@@ -15,27 +15,29 @@
                         <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" placeholder="Search Spotify Artists" translucent="NO" id="CsP-hH-2XD">
+                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" placeholder="Search Spotify Artists" translucent="NO" showsScopeBar="YES" id="CsP-hH-2XD">
                             <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.0" green="0.73633376870485034" blue="0.7753181638609391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Artist</string>
+                                <string>Album</string>
+                            </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="Evx-U1-BXd" id="P4Z-z6-pKI"/>
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistCell" rowHeight="50" id="kCx-gZ-SMV">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="kCx-gZ-SMV">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kCx-gZ-SMV" id="7EP-yG-K1a">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="JNY-7W-JDv" kind="show" identifier="showArtist" id="02V-Xt-qfe"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -44,6 +46,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="pUC-5J-c6j"/>
+                    <connections>
+                        <outlet property="searchBar" destination="CsP-hH-2XD" id="UyM-ff-RrC"/>
+                        <segue destination="j6Q-tq-qqk" kind="show" identifier="showAlbum" id="aPP-3D-bo7"/>
+                        <segue destination="JNY-7W-JDv" kind="show" identifier="showArtist" id="pbo-kZ-r3n"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="My8-xU-hmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -321,13 +328,14 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="albumLabel" destination="WE5-8G-UWJ" id="Ihb-Cd-PNh"/>
                         <outlet property="artistImage" destination="jEd-PK-sxE" id="Ruo-GV-q9s"/>
                         <outlet property="artistLabel" destination="UbD-tF-FYR" id="POF-K0-hv2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaY-Ja-e1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732.5" y="1127"/>
+            <point key="canvasLocation" x="1732.5" y="1197"/>
         </scene>
     </scenes>
 </document>

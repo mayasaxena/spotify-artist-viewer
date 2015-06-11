@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Intrepid. All rights reserved.
 //
 
+
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #import "SAAlbumViewController.h"
 
 @interface SAAlbumViewController ()
@@ -14,9 +17,26 @@
 
 @implementation SAAlbumViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.albumLabel.text = self.album.albumName;
+    self.artistLabel.text = self.album.artistName;
+    
+    
+    [self.albumImage sd_setImageWithURL:self.album.imageURL];
+    self.albumImage.layer.cornerRadius = self.albumImage.frame.size.width / 4;
+    self.albumImage.clipsToBounds = YES;
+    self.albumImage.layer.borderWidth = 3.0f;
+    self.albumImage.layer.borderColor = [[UIColor grayColor] CGColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +44,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
