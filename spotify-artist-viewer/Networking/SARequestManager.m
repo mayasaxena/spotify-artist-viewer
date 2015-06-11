@@ -45,10 +45,11 @@
 
         for (NSDictionary *artistInfo in artistDict) {
             SAArtist *artist = [[SAArtist alloc] init];
-//            NSLog(@"%@", [artistInfo objectForKey:@"images"]);
+            NSString *imageUrl = [[[artistInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
+        
             artist.name = [artistInfo objectForKey:@"name"];
-            artist.imageURL = [NSURL URLWithString:@""];
-            artist.bio = @"";
+            artist.imageURL = [NSURL URLWithString: imageUrl];
+            artist.bio = @"[needs to be filled]";
             [artists addObject:artist];
         }
         if (success) {
@@ -65,6 +66,16 @@
     }];
     
 }
+
+- (void)getArtistBiographyWithID:(NSString*)artistID
+                        success:(void (^)(NSString *artistBio))success
+                        failure:(void (^)(NSError *error))failure {
+    
+    
+}
+
+
+
 
 
 

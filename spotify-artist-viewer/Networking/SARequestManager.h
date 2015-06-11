@@ -15,5 +15,8 @@
                     success:(void (^)(NSArray *artists))success
                     failure:(void (^)(NSError *error))failure;
 
+- (void)getArtistBiographyWithID:(NSString*)artistID
+                        success:(void (^)(NSString *artistBio))success
+                        failure:(void (^)(NSError *error))failure;
 
 @end

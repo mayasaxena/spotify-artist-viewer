@@ -24,6 +24,8 @@
     self.artistLabel.text = self.artist.name;
     self.artistBio.text = self.artist.bio;
     [self.artistImage sd_setImageWithURL:self.artist.imageURL];
+    
+    [self getArtistBio];
     // Do any additional setup after loading the view.
 }
 
@@ -32,7 +34,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void) getArtistBio {
+    
+}
 
 
 /*
