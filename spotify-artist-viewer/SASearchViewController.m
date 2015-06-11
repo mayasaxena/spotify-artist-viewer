@@ -11,10 +11,9 @@
 #import "SAArtistViewController.h"
 #import "SARequestManager.h"
 
-@interface SASearchViewController () <UISearchBarDelegate, UISearchControllerDelegate>
+@interface SASearchViewController () <UISearchBarDelegate>
 
 @property (strong, nonatomic) __block NSArray *artists;
-@property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic) BOOL isSearching;
 
 @end
@@ -32,10 +31,6 @@
     [super viewDidLoad];
     
     self.isSearching = NO;
-    
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.searchBar.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
