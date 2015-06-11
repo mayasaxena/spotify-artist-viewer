@@ -45,11 +45,14 @@
 
         for (NSDictionary *artistInfo in artistDict) {
             SAArtist *artist = [[SAArtist alloc] init];
-            NSString *imageUrl = [[[artistInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
         
             artist.name = [artistInfo objectForKey:@"name"];
+            artist.identifier = [artistInfo objectForKey:@"id"];
+            
+            NSString *imageUrl = [[[artistInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
             artist.imageURL = [NSURL URLWithString: imageUrl];
-            artist.bio = @"[needs to be filled]";
+            
+            artist.bio = @"Loading...";
             [artists addObject:artist];
         }
         if (success) {
@@ -67,10 +70,39 @@
     
 }
 
-- (void)getArtistBiographyWithID:(NSString*)artistID
+- (void) getArtistBiographyWithID:(NSString *)artistID
                         success:(void (^)(NSString *artistBio))success
                         failure:(void (^)(NSError *error))failure {
     
+    
+    NSString *host = @"http://developer.echonest.com/api/v4/artist/biographies?api_key=4JKZ9YVDBABLYS8ZP&id=spotify:artist:";
+    
+    NSString *searchURL = [host stringByAppendingString:artistID];
+
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:searchURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *bio = @"";
+        
+        NSDictionary *biographies = [[responseObject objectForKey:@"response"] objectForKey:@"biographies"];
+        for (NSDictionary *biography in biographies) {
+            if (![biography objectForKey:@"truncated"]) {
+                bio = [biography objectForKey:@"text"];
+                break;
+            }
+        }
+        
+        if (success) {
+            success(bio);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            
+            failure(error);
+        }
+    }];
     
 }
 

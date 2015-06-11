@@ -90,23 +90,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                 </variation>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOn-GH-2jk" userLabel="Artist bio">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOn-GH-2jk" userLabel="Artist bio">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                </variation>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="HOn-GH-2jk" secondAttribute="trailing" constant="16" id="6VM-4a-nv6"/>
+                            <constraint firstAttribute="trailing" secondItem="HOn-GH-2jk" secondAttribute="trailing" constant="20" id="6VM-4a-nv6"/>
                             <constraint firstItem="zmb-Ce-OaF" firstAttribute="leading" secondItem="IAi-6e-pZW" secondAttribute="leading" constant="66" id="6vB-io-W3c"/>
-                            <constraint firstItem="HOn-GH-2jk" firstAttribute="leading" secondItem="IAi-6e-pZW" secondAttribute="leading" constant="16" id="Chj-5E-uAR"/>
+                            <constraint firstItem="HOn-GH-2jk" firstAttribute="leading" secondItem="IAi-6e-pZW" secondAttribute="leading" constant="20" id="Chj-5E-uAR"/>
                             <constraint firstItem="zmb-Ce-OaF" firstAttribute="top" secondItem="A04-6x-noi" secondAttribute="bottom" constant="27" id="MCU-Yl-65H"/>
                             <constraint firstAttribute="trailing" secondItem="zmb-Ce-OaF" secondAttribute="trailing" constant="66" id="TMB-qm-Gnh"/>
                             <constraint firstItem="cfh-bF-LMK" firstAttribute="top" secondItem="HOn-GH-2jk" secondAttribute="bottom" constant="8" id="aQX-2l-B7l"/>
-                            <constraint firstItem="HOn-GH-2jk" firstAttribute="top" secondItem="G5U-nE-yt2" secondAttribute="bottom" constant="8" id="aux-KJ-uKh"/>
+                            <constraint firstItem="HOn-GH-2jk" firstAttribute="top" secondItem="G5U-nE-yt2" secondAttribute="bottom" constant="15" id="aux-KJ-uKh"/>
                             <constraint firstAttribute="centerX" secondItem="G5U-nE-yt2" secondAttribute="centerX" id="tsF-T5-F2k"/>
                             <constraint firstItem="G5U-nE-yt2" firstAttribute="top" secondItem="zmb-Ce-OaF" secondAttribute="bottom" constant="21" id="xjo-Nv-gfL"/>
                         </constraints>

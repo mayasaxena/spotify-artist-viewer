@@ -12,6 +12,8 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) NSString *bio;
+@property (nonatomic, strong) NSString *identifier;
+
 
 
 @end

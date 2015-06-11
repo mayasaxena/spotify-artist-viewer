@@ -8,6 +8,8 @@
 
 #import "SAArtistViewController.h"
 #import "SAArtist.h"
+#import "SARequestManager.h"
+
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SAArtistViewController ()
@@ -25,7 +27,7 @@
     self.artistBio.text = self.artist.bio;
     [self.artistImage sd_setImageWithURL:self.artist.imageURL];
     
-    [self getArtistBio];
+    [self getArtistBioWithID:self.artist.identifier];
     // Do any additional setup after loading the view.
 }
 
@@ -34,8 +36,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) getArtistBio {
+- (void) getArtistBioWithID:(NSString *)artistID {
     
+    [[SARequestManager sharedManager] getArtistBiographyWithID:artistID success:^(NSString *artistBio) {
+        self.artistBio.text = artistBio;
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 
