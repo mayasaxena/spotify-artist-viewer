@@ -16,6 +16,8 @@
 		2E7674541B2676F400336867 /* SAArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7674531B2676F400336867 /* SAArtist.m */; };
 		2E7674571B26772600336867 /* SARequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7674561B26772600336867 /* SARequestManager.m */; };
 		7E202FFCDF105E1A71AFF9ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FAF05E94F94A691922D2433 /* libPods.a */; };
+		A5A5ECD81B2A1254006C676D /* SAAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */; };
+		A5A5ECDB1B2A173B006C676D /* SAAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECDA1B2A173B006C676D /* SAAlbum.m */; };
 		A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */; };
 		A5DDCECE1B27769500EF5F76 /* SASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECD1B27769500EF5F76 /* SASearchViewController.m */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,10 @@
 		2E7674561B26772600336867 /* SARequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARequestManager.m; path = Networking/SARequestManager.m; sourceTree = "<group>"; };
 		44D3B178536DF8A3A6A17C08 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4FAF05E94F94A691922D2433 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5A5ECD61B2A1254006C676D /* SAAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumViewController.h; sourceTree = "<group>"; };
+		A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumViewController.m; sourceTree = "<group>"; };
+		A5A5ECD91B2A173B006C676D /* SAAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAAlbum.h; path = Models/SAAlbum.h; sourceTree = "<group>"; };
+		A5A5ECDA1B2A173B006C676D /* SAAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SAAlbum.m; path = Models/SAAlbum.m; sourceTree = "<group>"; };
 		A5DDCEC91B275FE900EF5F76 /* SAArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAArtistViewController.h; sourceTree = "<group>"; };
 		A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAArtistViewController.m; sourceTree = "<group>"; };
 		A5DDCECC1B27769500EF5F76 /* SASearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SASearchViewController.h; sourceTree = "<group>"; };
@@ -104,6 +110,8 @@
 				2E7674341B26766200336867 /* Main.storyboard */,
 				A5DDCECC1B27769500EF5F76 /* SASearchViewController.h */,
 				A5DDCECD1B27769500EF5F76 /* SASearchViewController.m */,
+				A5A5ECD61B2A1254006C676D /* SAAlbumViewController.h */,
+				A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */,
 				A5DDCEC91B275FE900EF5F76 /* SAArtistViewController.h */,
 				A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */,
 				2E7674371B26766200336867 /* Images.xcassets */,
@@ -144,6 +152,8 @@
 			children = (
 				2E7674521B2676F400336867 /* SAArtist.h */,
 				2E7674531B2676F400336867 /* SAArtist.m */,
+				A5A5ECD91B2A173B006C676D /* SAAlbum.h */,
+				A5A5ECDA1B2A173B006C676D /* SAAlbum.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -310,6 +320,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7674541B2676F400336867 /* SAArtist.m in Sources */,
+				A5A5ECDB1B2A173B006C676D /* SAAlbum.m in Sources */,
+				A5A5ECD81B2A1254006C676D /* SAAlbumViewController.m in Sources */,
 				A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */,
 				A5DDCECE1B27769500EF5F76 /* SASearchViewController.m in Sources */,
 				2E7674301B26766200336867 /* AppDelegate.m in Sources */,
