@@ -19,6 +19,12 @@
 
 @implementation SAArtistViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +32,11 @@
     self.artistLabel.text = self.artist.name;
     self.artistBio.text = self.artist.bio;
     [self.artistImage sd_setImageWithURL:self.artist.imageURL];
+    self.artistImage.layer.cornerRadius = self.artistImage.frame.size.width / 4;
+    self.artistImage.clipsToBounds = YES;
+    self.artistImage.layer.borderWidth = 3.0f;
+    
+    self.artistImage.layer.borderColor = [[UIColor grayColor] CGColor];
     
     [self getArtistBioWithID:self.artist.identifier];
     // Do any additional setup after loading the view.

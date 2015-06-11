@@ -21,6 +21,11 @@
 
 @implementation SASearchViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+    
+}
 
 
 - (void)viewDidLoad {
@@ -33,7 +38,6 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
-    
     
     #pragma mark - Example Artists
     
@@ -65,7 +69,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArtistCell" forIndexPath:indexPath];
-    
+    cell.textLabel.textColor = [UIColor whiteColor];
     SAArtist *artist = self.artists[indexPath.row];
     cell.textLabel.text = artist.name;
     
@@ -111,6 +115,9 @@
                                                       failure:^(NSError *error) {
                                                           NSLog(@"%@",error);
                                                       }];
+    } else {
+        self.artists = nil;
+        [self.tableView reloadData];
     }
 
 
