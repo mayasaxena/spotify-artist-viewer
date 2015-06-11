@@ -31,15 +31,15 @@
     
     self.artistLabel.text = self.artist.name;
     self.artistBio.text = self.artist.bio;
+    
+    
     [self.artistImage sd_setImageWithURL:self.artist.imageURL];
     self.artistImage.layer.cornerRadius = self.artistImage.frame.size.width / 4;
     self.artistImage.clipsToBounds = YES;
     self.artistImage.layer.borderWidth = 3.0f;
-    
     self.artistImage.layer.borderColor = [[UIColor grayColor] CGColor];
     
     [self getArtistBioWithID:self.artist.identifier];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,15 +56,5 @@
     }];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

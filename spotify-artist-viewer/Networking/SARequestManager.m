@@ -79,30 +79,31 @@
     
     NSString *searchURL = [host stringByAppendingString:artistID];
 
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:searchURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *bio = @"";
-        
-        NSDictionary *biographies = [[responseObject objectForKey:@"response"] objectForKey:@"biographies"];
-        for (NSDictionary *biography in biographies) {
-            if (![biography objectForKey:@"truncated"]) {
-                bio = [biography objectForKey:@"text"];
-                break;
-            }
-        }
-        
-        if (success) {
-            success(bio);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        if (failure) {
+    [manager GET:searchURL parameters:nil
+        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSString *bio = @"";
             
-            failure(error);
-        }
-    }];
+            NSDictionary *biographies = [[responseObject objectForKey:@"response"] objectForKey:@"biographies"];
+            for (NSDictionary *biography in biographies) {
+                // Find first non-truncated bio
+                if (![biography objectForKey:@"truncated"]) {
+                    bio = [biography objectForKey:@"text"];
+                    break;
+                }
+            }
+            
+            if (success) {
+                success(bio);
+            }
+    
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            if (failure) {
+                
+                failure(error);
+            }
+        }];
     
 }
 

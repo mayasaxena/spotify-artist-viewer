@@ -33,19 +33,9 @@
     
     self.isSearching = NO;
     
-    #pragma mark - SearchControllers
-    
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
-    
-    #pragma mark - Example Artists
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,16 +82,9 @@
 }
 
 
-#pragma mark - Search Functionsa
-
-- (void)searchForText:(NSString *)searchText {
-    
-}
-
-
+#pragma mark - Search Functions
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    
     
     if ([searchText length] > 0) {
         
