@@ -38,16 +38,18 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *artists = [[NSArray alloc] init];
-//        NSLog(@"JSON: %@", responseObject);
+        NSMutableArray *artists = [[NSMutableArray alloc] init];
         
         NSDictionary *artistDict =[[responseObject objectForKey:@"artists"] objectForKey:@"items"];
     
 
         for (NSDictionary *artistInfo in artistDict) {
             SAArtist *artist = [[SAArtist alloc] init];
-            NSLog(@"%@", [artistInfo objectForKey:@"name"]);
+//            NSLog(@"%@", [artistInfo objectForKey:@"images"]);
             artist.name = [artistInfo objectForKey:@"name"];
+            artist.imageURL = [NSURL URLWithString:@""];
+            artist.bio = @"";
+            [artists addObject:artist];
         }
         if (success) {
             
