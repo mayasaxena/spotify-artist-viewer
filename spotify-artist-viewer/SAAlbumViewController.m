@@ -11,7 +11,7 @@
 
 #import "SAAlbumViewController.h"
 
-@interface SAAlbumViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SAAlbumViewController ()
 @property (nonatomic, strong) NSArray *tracks;
 @end
 
@@ -32,6 +32,7 @@
     
     
     [self.albumImage sd_setImageWithURL:self.album.imageURL];
+    
 //    self.albumImage.layer.cornerRadius = self.albumImage.frame.size.width / 4;
 //    self.albumImage.clipsToBounds = YES;
 //    self.albumImage.layer.borderWidth = 3.0f;
@@ -67,7 +68,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackCell" forIndexPath:indexPath];
     cell.textLabel.textColor = [UIColor whiteColor];
-
+    
     
     return cell;
 }

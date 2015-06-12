@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SATrack : NSObject
+@property (nonatomic, strong) NSString *name;
+@property NSInteger number;
+@property NSInteger duration;
 
 @end
