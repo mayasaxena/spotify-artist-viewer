@@ -252,14 +252,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="fky-jN-59e">
+                            <tableView clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="fky-jN-59e">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackCell" id="2aQ-DQ-RDs" customClass="SATrackTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackCell" rowHeight="30" id="2aQ-DQ-RDs" customClass="SATrackTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2aQ-DQ-RDs" id="fGf-a7-Ds3">
@@ -273,9 +273,22 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyR-57-z7j">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="225" id="rez-SJ-cfg"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="rez-SJ-cfg"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="rez-SJ-cfg"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziM-wN-tYk">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -286,11 +299,11 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="uyR-57-z7j" firstAttribute="leading" secondItem="fGf-a7-Ds3" secondAttribute="leading" constant="65" id="1NX-Pa-5hZ"/>
+                                                <constraint firstItem="uyR-57-z7j" firstAttribute="leading" secondItem="fGf-a7-Ds3" secondAttribute="leading" constant="75" id="1NX-Pa-5hZ"/>
                                                 <constraint firstAttribute="centerY" secondItem="cN4-VQ-Bgf" secondAttribute="centerY" id="ROX-rb-xHj"/>
                                                 <constraint firstAttribute="centerY" secondItem="ziM-wN-tYk" secondAttribute="centerY" id="ah9-vh-f3u"/>
                                                 <constraint firstAttribute="centerY" secondItem="uyR-57-z7j" secondAttribute="centerY" id="eLj-T2-y1P"/>
-                                                <constraint firstAttribute="trailing" secondItem="ziM-wN-tYk" secondAttribute="trailing" constant="16" id="jhX-bv-UIO"/>
+                                                <constraint firstAttribute="trailing" secondItem="ziM-wN-tYk" secondAttribute="leading" constant="70" id="jhX-bv-UIO"/>
                                                 <constraint firstItem="cN4-VQ-Bgf" firstAttribute="leading" secondItem="fGf-a7-Ds3" secondAttribute="leading" constant="16" id="mZO-h7-t4G"/>
                                             </constraints>
                                             <variation key="default">
@@ -375,7 +388,7 @@
                             <constraint firstItem="WE5-8G-UWJ" firstAttribute="top" secondItem="jEd-PK-sxE" secondAttribute="bottom" constant="26" id="cQ9-jo-auy"/>
                             <constraint firstAttribute="trailing" secondItem="IEu-z2-mKy" secondAttribute="trailing" constant="16" id="is8-1g-123"/>
                             <constraint firstItem="WE5-8G-UWJ" firstAttribute="trailing" secondItem="UbD-tF-FYR" secondAttribute="trailing" constant="166" id="puQ-l1-UIy"/>
-                            <constraint firstItem="dqN-Ps-f5S" firstAttribute="top" secondItem="fky-jN-59e" secondAttribute="bottom" constant="-44" id="uH4-JF-Gji"/>
+                            <constraint firstItem="dqN-Ps-f5S" firstAttribute="top" secondItem="fky-jN-59e" secondAttribute="bottom" id="uH4-JF-Gji"/>
                             <constraint firstItem="jEd-PK-sxE" firstAttribute="top" secondItem="71D-Vc-h9u" secondAttribute="bottom" constant="44" id="wcO-pE-QdE"/>
                             <constraint firstItem="fky-jN-59e" firstAttribute="leading" secondItem="K4u-Cr-kI2" secondAttribute="leading" id="xLy-gh-7j1"/>
                         </constraints>

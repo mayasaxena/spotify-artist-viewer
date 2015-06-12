@@ -31,6 +31,19 @@ static NSInteger const kAlbumImageSize = 150;
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+  
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.albumLabel.text = self.album.albumName;
+    self.artistLabel.text = self.album.artistName;
+    
+    [self.albumImage sd_setImageWithURL:self.album.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.albumImage.image = [self.albumImage.image imageScaledToHeight:kAlbumImageSize];
+    }];
+    
     [[SARequestManager sharedManager] getAlbumTracksWithAlbumID:self.album.identifier
                                                         success:^(NSArray *tracks) {
                                                             self.tracks = tracks;
@@ -39,18 +52,6 @@ static NSInteger const kAlbumImageSize = 150;
                                                         failure:^(NSError *error) {
                                                             NSLog(@"%@",error);
                                                         }];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.albumLabel.text = self.album.albumName;
-    self.artistLabel.text = self.album.artistName;
-    
-    [self.albumImage sd_setImageWithURL:self.album.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.albumImage.image = [self.albumImage.image imageScaledToHeight:kAlbumImageSize];
-    }];
-    
-
 
     
 //    self.albumImage.layer.cornerRadius = self.albumImage.frame.size.width / 4;
@@ -59,7 +60,6 @@ static NSInteger const kAlbumImageSize = 150;
 //    self.albumImage.layer.borderColor = [[UIColor grayColor] CGColor];
     
 }
-
 
 
 #pragma mark - Table View Delegate and Data Source
