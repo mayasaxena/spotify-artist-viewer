@@ -17,6 +17,7 @@
 		2E7674571B26772600336867 /* SARequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7674561B26772600336867 /* SARequestManager.m */; };
 		7E202FFCDF105E1A71AFF9ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FAF05E94F94A691922D2433 /* libPods.a */; };
 		A51289B81B2B23D500A83D28 /* SATrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289B71B2B23D500A83D28 /* SATrack.m */; };
+		A51289BB1B2B61B500A83D28 /* SATrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */; };
 		A5A5ECD81B2A1254006C676D /* SAAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */; };
 		A5A5ECDB1B2A173B006C676D /* SAAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECDA1B2A173B006C676D /* SAAlbum.m */; };
 		A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */; };
@@ -54,6 +55,8 @@
 		4FAF05E94F94A691922D2433 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51289B61B2B23D500A83D28 /* SATrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SATrack.h; path = Models/SATrack.h; sourceTree = "<group>"; };
 		A51289B71B2B23D500A83D28 /* SATrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SATrack.m; path = Models/SATrack.m; sourceTree = "<group>"; };
+		A51289B91B2B61B500A83D28 /* SATrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATrackTableViewCell.h; sourceTree = "<group>"; };
+		A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATrackTableViewCell.m; sourceTree = "<group>"; };
 		A5A5ECD61B2A1254006C676D /* SAAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumViewController.h; sourceTree = "<group>"; };
 		A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumViewController.m; sourceTree = "<group>"; };
 		A5A5ECD91B2A173B006C676D /* SAAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAAlbum.h; path = Models/SAAlbum.h; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 				2E76742E1B26766200336867 /* AppDelegate.h */,
 				2E76742F1B26766200336867 /* AppDelegate.m */,
 				2E7674341B26766200336867 /* Main.storyboard */,
+				A51289B91B2B61B500A83D28 /* SATrackTableViewCell.h */,
+				A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */,
 				A5DDCECC1B27769500EF5F76 /* SASearchViewController.h */,
 				A5DDCECD1B27769500EF5F76 /* SASearchViewController.m */,
 				A5A5ECD61B2A1254006C676D /* SAAlbumViewController.h */,
@@ -331,6 +336,7 @@
 				A51289B81B2B23D500A83D28 /* SATrack.m in Sources */,
 				A5DDCECE1B27769500EF5F76 /* SASearchViewController.m in Sources */,
 				2E7674301B26766200336867 /* AppDelegate.m in Sources */,
+				A51289BB1B2B61B500A83D28 /* SATrackTableViewCell.m in Sources */,
 				2E76742D1B26766200336867 /* main.m in Sources */,
 				2E7674571B26772600336867 /* SARequestManager.m in Sources */,
 			);

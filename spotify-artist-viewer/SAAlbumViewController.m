@@ -10,8 +10,10 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "SAAlbumViewController.h"
+#import "SATrack.h"
+#import "SATrackTableViewCell.h"
 
-@interface SAAlbumViewController ()
+@interface SAAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *tracks;
 @end
 
@@ -64,14 +66,26 @@
 
 #pragma mark - Table View Delegate and Data Source
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackCell" forIndexPath:indexPath];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    
+    SATrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackCell" forIndexPath:indexPath];
+    cell.numLabel.textColor = [UIColor whiteColor];
+    cell.numLabel.text = [NSString stringWithFormat:@"%ld", (long)((SATrack *)self.tracks[indexPath.row]).number];
+    cell.songLabel.textColor = [UIColor whiteColor];
+    cell.durationLabel.textColor = [UIColor whiteColor];
     
     return cell;
 }
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.tracks count];
+}
+
 
 
 @end
