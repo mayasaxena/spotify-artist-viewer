@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 
-@interface SATrack : NSObject
+@interface SATrack : MTLModel
+
 @property (nonatomic, strong) NSString *name;
 @property NSInteger number;
 @property NSInteger duration;
+
 
 @end

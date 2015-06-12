@@ -10,4 +10,18 @@
 
 @implementation SATrack
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"name": @"items.name",
+             @"number": @"track_number",
+             @"duration": @"duration_ms"
+             };
+}
+
++ (NSValueTransformer *)appActionsJSONTransformer
+{
+    // tell Mantle to populate appActions property with an array of ChoosyAppAction objects
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[SATrack class]];
+}
+
 @end
