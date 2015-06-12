@@ -18,6 +18,7 @@
 		7E202FFCDF105E1A71AFF9ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FAF05E94F94A691922D2433 /* libPods.a */; };
 		A51289B81B2B23D500A83D28 /* SATrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289B71B2B23D500A83D28 /* SATrack.m */; };
 		A51289BB1B2B61B500A83D28 /* SATrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */; };
+		A51289BE1B2B697400A83D28 /* UIImage+SAImageScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289BD1B2B697400A83D28 /* UIImage+SAImageScaling.m */; };
 		A5A5ECD81B2A1254006C676D /* SAAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */; };
 		A5A5ECDB1B2A173B006C676D /* SAAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECDA1B2A173B006C676D /* SAAlbum.m */; };
 		A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */; };
@@ -57,6 +58,8 @@
 		A51289B71B2B23D500A83D28 /* SATrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SATrack.m; path = Models/SATrack.m; sourceTree = "<group>"; };
 		A51289B91B2B61B500A83D28 /* SATrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATrackTableViewCell.h; sourceTree = "<group>"; };
 		A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATrackTableViewCell.m; sourceTree = "<group>"; };
+		A51289BC1B2B697400A83D28 /* UIImage+SAImageScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SAImageScaling.h"; sourceTree = "<group>"; };
+		A51289BD1B2B697400A83D28 /* UIImage+SAImageScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SAImageScaling.m"; sourceTree = "<group>"; };
 		A5A5ECD61B2A1254006C676D /* SAAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumViewController.h; sourceTree = "<group>"; };
 		A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumViewController.m; sourceTree = "<group>"; };
 		A5A5ECD91B2A173B006C676D /* SAAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAAlbum.h; path = Models/SAAlbum.h; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		2E7674291B26766200336867 /* spotify-artist-viewer */ = {
 			isa = PBXGroup;
 			children = (
+				A51289BF1B2B6ABE00A83D28 /* Categories */,
 				2E7674501B2676CD00336867 /* Models */,
 				2E7674511B2676D400336867 /* Networking */,
 				2E76742E1B26766200336867 /* AppDelegate.h */,
@@ -192,6 +196,15 @@
 				4FAF05E94F94A691922D2433 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A51289BF1B2B6ABE00A83D28 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A51289BC1B2B697400A83D28 /* UIImage+SAImageScaling.h */,
+				A51289BD1B2B697400A83D28 /* UIImage+SAImageScaling.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7674541B2676F400336867 /* SAArtist.m in Sources */,
+				A51289BE1B2B697400A83D28 /* UIImage+SAImageScaling.m in Sources */,
 				A5A5ECDB1B2A173B006C676D /* SAAlbum.m in Sources */,
 				A5A5ECD81B2A1254006C676D /* SAAlbumViewController.m in Sources */,
 				A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */,

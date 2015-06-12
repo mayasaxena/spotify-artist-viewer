@@ -142,6 +142,12 @@
     
 }
 
+- (void)getAlbumTracksWithAlbumID:(NSString *)albumID
+                          success:(void (^)(NSArray *tracks))success
+                          failure:(void (^)(NSError *error))failure {
+    
+}
+
 
 
 @end
