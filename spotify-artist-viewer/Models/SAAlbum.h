@@ -13,5 +13,7 @@
 @property (nonatomic, strong) NSString *albumName;
 @property (nonatomic, strong) NSString *artistName;
 @property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, strong) NSString *identifier;
+
 
 @end

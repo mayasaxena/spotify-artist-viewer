@@ -5,9 +5,10 @@
 //  Copyright (c) 2015 Intrepid. All rights reserved.
 //
 
+#import <AFNetworking/AFNetworking.h>
 #import "SARequestManager.h"
 #import "SAArtist.h"
-#import <AFNetworking/AFNetworking.h>
+#import "SAAlbum.h"
 
 @implementation SARequestManager
 
@@ -28,44 +29,40 @@
 - (void)getArtistsWithQuery:(NSString *)query
                     success:(void (^)(NSArray *artists))success
                     failure:(void (^)(NSError *error))failure {
-    // TODO: make network calls to spotify API
-    //?q=Muse&type=artist
     
     NSString *host = @"https://api.spotify.com/v1/search?type=artist&q=";
-    
     NSString *searchURL = [host stringByAppendingString:query];
     
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:searchURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableArray *artists = [[NSMutableArray alloc] init];
-        
-        NSDictionary *artistDict =[[responseObject objectForKey:@"artists"] objectForKey:@"items"];
-    
+    [manager GET:searchURL parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSMutableArray *artists = [[NSMutableArray alloc] init];
 
-        for (NSDictionary *artistInfo in artistDict) {
-            SAArtist *artist = [[SAArtist alloc] init];
+            NSDictionary *artistDict =[[responseObject objectForKey:@"artists"] objectForKey:@"items"];
+
+            for (NSDictionary *artistInfo in artistDict) {
+                SAArtist *artist = [[SAArtist alloc] init];
+
+                artist.name = [artistInfo objectForKey:@"name"];
+                artist.identifier = [artistInfo objectForKey:@"id"];
+                
+                NSString *imageUrl = [[[artistInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
+                artist.imageURL = [NSURL URLWithString: imageUrl];
+                
+                artist.bio = @"Loading...";
+                [artists addObject:artist];
+            }
+
+            if (success) {
+                success(artists);
+            }
         
-            artist.name = [artistInfo objectForKey:@"name"];
-            artist.identifier = [artistInfo objectForKey:@"id"];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
             
-            NSString *imageUrl = [[[artistInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
-            artist.imageURL = [NSURL URLWithString: imageUrl];
-            
-            artist.bio = @"Loading...";
-            [artists addObject:artist];
-        }
-        if (success) {
-            
-            success(artists);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        if (failure) {
-            
-            failure(error);
-        }
+            if (failure) {
+                failure(error);
+            }
     }];
     
 }
@@ -76,14 +73,13 @@
     
     
     NSString *host = @"http://developer.echonest.com/api/v4/artist/biographies?api_key=4JKZ9YVDBABLYS8ZP&id=spotify:artist:";
-    
     NSString *searchURL = [host stringByAppendingString:artistID];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
-        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSString *bio = @"";
-            
+
             NSDictionary *biographies = [[responseObject objectForKey:@"response"] objectForKey:@"biographies"];
             for (NSDictionary *biography in biographies) {
                 // Find first non-truncated bio
@@ -92,23 +88,59 @@
                     break;
                 }
             }
-            
+
             if (success) {
                 success(bio);
             }
-    
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
             if (failure) {
-                
                 failure(error);
             }
-        }];
+    }];
     
 }
 
-
-
+- (void)getAlbumsWithQuery:(NSString *)query
+                   success:(void (^)(NSArray *albums))success
+                   failure:(void (^)(NSError *error))failure {
+    
+    NSString *host = @"https://api.spotify.com/v1/search?type=album&q=";
+    NSString *searchURL = [host stringByAppendingString:query];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:searchURL parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSMutableArray *albums = [[NSMutableArray alloc] init];
+             
+             NSDictionary *albumDict =[[responseObject objectForKey:@"albums"] objectForKey:@"items"];
+             
+             for (NSDictionary *albumInfo in albumDict) {
+                 SAAlbum *album = [[SAAlbum alloc] init];
+                 
+                 album.albumName = [albumInfo objectForKey:@"name"];
+                 album.identifier = [albumInfo objectForKey:@"id"];
+                 
+                 NSString *imageUrl = [[[albumInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
+                 album.imageURL = [NSURL URLWithString: imageUrl];
+              
+                 [albums addObject:album];
+             }
+             
+             if (success) {
+                 success(albums);
+             }
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+             
+             if (failure) {
+                 failure(error);
+             }
+         }];
+    
+}
 
 
 

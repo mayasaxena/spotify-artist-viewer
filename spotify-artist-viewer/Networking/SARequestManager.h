@@ -19,4 +19,8 @@
                         success:(void (^)(NSString *artistBio))success
                         failure:(void (^)(NSError *error))failure;
 
+- (void)getAlbumsWithQuery:(NSString *)query
+                    success:(void (^)(NSArray *albums))success
+                    failure:(void (^)(NSError *error))failure;
+
 @end

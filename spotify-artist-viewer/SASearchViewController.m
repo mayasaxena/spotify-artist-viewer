@@ -66,7 +66,6 @@ enum {
     cell.textLabel.textColor = [UIColor whiteColor];
     
     if (self.searchBar.selectedScopeButtonIndex == Artist) {
-        
         SAArtist *artist = self.results[indexPath.row];
         cell.textLabel.text = artist.name;
     } else if (self.searchBar.selectedScopeButtonIndex == Album) {
@@ -80,7 +79,7 @@ enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.searchBar.selectedScopeButtonIndex == Artist) {
         [self performSegueWithIdentifier:@"showArtist" sender:self];
-    } else {
+    } else if (self.searchBar.selectedScopeButtonIndex == Album) {
         [self performSegueWithIdentifier:@"showAlbum" sender:self];
 
     }
@@ -143,6 +142,15 @@ enum {
                                                           }];
             
         } else if (self.searchBar.selectedScopeButtonIndex == Album) {
+            
+            [[SARequestManager sharedManager] getAlbumsWithQuery:escapedSearchText
+                                                          success:^(NSArray *albums) {
+                                                              self.results = albums;
+                                                              [self.tableView reloadData];
+                                                          }
+                                                          failure:^(NSError *error) {
+                                                              NSLog(@"%@",error);
+                                                          }];
             
         }
         
