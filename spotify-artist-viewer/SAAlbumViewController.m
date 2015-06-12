@@ -10,14 +10,17 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "SAAlbumViewController.h"
+#import "SARequestManager.h"
 #import "SATrack.h"
 #import "SATrackTableViewCell.h"
+
 #import "UIImage+SAImageScaling.h"
 
 static NSInteger const kAlbumImageSize = 150;
 
 @interface SAAlbumViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *tracks;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -28,7 +31,14 @@ static NSInteger const kAlbumImageSize = 150;
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    
+    [[SARequestManager sharedManager] getAlbumTracksWithAlbumID:self.album.identifier
+                                                        success:^(NSArray *tracks) {
+                                                            self.tracks = tracks;
+                                                            [self.tableView reloadData];
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            NSLog(@"%@",error);
+                                                        }];
 }
 
 - (void)viewDidLoad {
@@ -39,6 +49,10 @@ static NSInteger const kAlbumImageSize = 150;
     [self.albumImage sd_setImageWithURL:self.album.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.albumImage.image = [self.albumImage.image imageScaledToHeight:kAlbumImageSize];
     }];
+    
+
+
+    
 //    self.albumImage.layer.cornerRadius = self.albumImage.frame.size.width / 4;
 //    self.albumImage.clipsToBounds = YES;
 //    self.albumImage.layer.borderWidth = 3.0f;

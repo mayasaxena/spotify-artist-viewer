@@ -6,9 +6,11 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-#import "SARequestManager.h"
-#import "SAArtist.h"
+
 #import "SAAlbum.h"
+#import "SAArtist.h"
+#import "SATrack.h"
+#import "SARequestManager.h"
 
 @implementation SARequestManager
 
@@ -26,7 +28,7 @@
     return shared;
 }
 
-- (void)getArtistsWithQuery:(NSString *)query
+- (void) getArtistsWithQuery:(NSString *)query
                     success:(void (^)(NSArray *artists))success
                     failure:(void (^)(NSError *error))failure {
     
@@ -102,7 +104,7 @@
     
 }
 
-- (void)getAlbumsWithQuery:(NSString *)query
+- (void) getAlbumsWithQuery:(NSString *)query
                    success:(void (^)(NSArray *albums))success
                    failure:(void (^)(NSError *error))failure {
     
@@ -142,9 +144,40 @@
     
 }
 
-- (void)getAlbumTracksWithAlbumID:(NSString *)albumID
+- (void) getAlbumTracksWithAlbumID:(NSString *)albumID
                           success:(void (^)(NSArray *tracks))success
                           failure:(void (^)(NSError *error))failure {
+    
+    NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/albums/%@/tracks", albumID];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:searchURL parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSMutableArray *tracks = [[NSMutableArray alloc] init];
+             
+             NSDictionary *trackDict =[responseObject objectForKey:@"items"];
+             
+             for (NSDictionary *trackInfo in trackDict) {
+                 SATrack *track = [[SATrack alloc] init];
+                 
+                 track.name = [trackInfo objectForKey:@"name"];
+                 track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
+                 track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
+                 [tracks addObject:track];
+             }
+             if (success) {
+                 NSLog(@"%lu", (unsigned long)[tracks count]);
+                 success(tracks);
+             }
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+             
+             if (failure) {
+                 failure(error);
+             }
+         }];
+
     
 }
 

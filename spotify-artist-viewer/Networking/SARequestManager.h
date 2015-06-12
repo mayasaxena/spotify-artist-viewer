@@ -11,19 +11,19 @@
 
 + (instancetype)sharedManager;
 
-- (void)getArtistsWithQuery:(NSString *)query
+- (void) getArtistsWithQuery:(NSString *)query
                     success:(void (^)(NSArray *artists))success
                     failure:(void (^)(NSError *error))failure;
 
-- (void)getArtistBiographyWithID:(NSString*)artistID
+- (void) getArtistBiographyWithID:(NSString*)artistID
                          success:(void (^)(NSString *artistBio))success
                          failure:(void (^)(NSError *error))failure;
 
-- (void)getAlbumsWithQuery:(NSString *)query
+- (void) getAlbumsWithQuery:(NSString *)query
                    success:(void (^)(NSArray *albums))success
                    failure:(void (^)(NSError *error))failure;
 
-- (void)getAlbumTracksWithAlbumID:(NSString *)albumID
+- (void) getAlbumTracksWithAlbumID:(NSString *)albumID
                           success:(void (^)(NSArray *tracks))success
                           failure:(void (^)(NSError *error))failure;
 

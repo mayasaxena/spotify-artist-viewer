@@ -286,12 +286,12 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="uyR-57-z7j" firstAttribute="leading" secondItem="fGf-a7-Ds3" secondAttribute="leading" constant="65" id="1NX-Pa-5hZ"/>
                                                 <constraint firstAttribute="centerY" secondItem="cN4-VQ-Bgf" secondAttribute="centerY" id="ROX-rb-xHj"/>
                                                 <constraint firstAttribute="centerY" secondItem="ziM-wN-tYk" secondAttribute="centerY" id="ah9-vh-f3u"/>
                                                 <constraint firstAttribute="centerY" secondItem="uyR-57-z7j" secondAttribute="centerY" id="eLj-T2-y1P"/>
                                                 <constraint firstAttribute="trailing" secondItem="ziM-wN-tYk" secondAttribute="trailing" constant="16" id="jhX-bv-UIO"/>
                                                 <constraint firstItem="cN4-VQ-Bgf" firstAttribute="leading" secondItem="fGf-a7-Ds3" secondAttribute="leading" constant="16" id="mZO-h7-t4G"/>
-                                                <constraint firstItem="uyR-57-z7j" firstAttribute="leading" secondItem="cN4-VQ-Bgf" secondAttribute="trailing" constant="49" id="zm3-eO-Xyt"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -302,8 +302,8 @@
                                                 <mask key="constraints">
                                                     <exclude reference="ROX-rb-xHj"/>
                                                     <exclude reference="mZO-h7-t4G"/>
+                                                    <exclude reference="1NX-Pa-5hZ"/>
                                                     <exclude reference="eLj-T2-y1P"/>
-                                                    <exclude reference="zm3-eO-Xyt"/>
                                                     <exclude reference="ah9-vh-f3u"/>
                                                     <exclude reference="jhX-bv-UIO"/>
                                                 </mask>
@@ -317,8 +317,8 @@
                                                 <mask key="constraints">
                                                     <include reference="ROX-rb-xHj"/>
                                                     <include reference="mZO-h7-t4G"/>
+                                                    <include reference="1NX-Pa-5hZ"/>
                                                     <include reference="eLj-T2-y1P"/>
-                                                    <include reference="zm3-eO-Xyt"/>
                                                     <include reference="ah9-vh-f3u"/>
                                                     <include reference="jhX-bv-UIO"/>
                                                 </mask>
@@ -450,6 +450,7 @@
                         <outlet property="albumImage" destination="jEd-PK-sxE" id="1rv-mV-1tg"/>
                         <outlet property="albumLabel" destination="WE5-8G-UWJ" id="Ihb-Cd-PNh"/>
                         <outlet property="artistLabel" destination="UbD-tF-FYR" id="POF-K0-hv2"/>
+                        <outlet property="tableView" destination="fky-jN-59e" id="Mh8-Qf-mVQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaY-Ja-e1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
