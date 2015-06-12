@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 Intrepid. All rights reserved.
 //
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #import "SAArtistViewController.h"
 #import "SAArtist.h"
 #import "SARequestManager.h"
-
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImage+SAImageScaling.h"
 
 @interface SAArtistViewController ()
 
@@ -34,7 +35,7 @@
     
     
     [self.artistImage sd_setImageWithURL:self.artist.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.artistImage.image = [self imageWithImage:self.artistImage.image scaledToHeight:125];
+        self.artistImage.image = [self.artistImage.image imageScaledToHeight:125];
     }];
 //    
 //    self.artistImage.layer.cornerRadius = self.artistImage.frame.size.width / 4;
@@ -59,38 +60,6 @@
     }];
 }
 
-- (UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width
-{
-    float oldWidth = sourceImage.size.width;
-    NSLog(@"%f", oldWidth);
-
-    float scaleFactor = i_width / oldWidth;
-    
-    float newHeight = sourceImage.size.height * scaleFactor;
-    float newWidth = oldWidth * scaleFactor;
-    
-    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
-- (UIImage*)imageWithImage: (UIImage*) sourceImage scaledToHeight: (float) i_height
-{
-    float oldHeight = sourceImage.size.height;
-    
-    float scaleFactor = i_height / oldHeight;
-    
-    float newWidth = sourceImage.size.width * scaleFactor;
-    float newHeight = oldHeight * scaleFactor;
-    
-    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
 
 
 @end
