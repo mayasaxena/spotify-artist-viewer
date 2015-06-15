@@ -165,19 +165,7 @@
                  
              }
              
-             NSMutableArray *tracks = [[NSMutableArray alloc] init];
-             
-             NSDictionary *trackDict =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
-             
-             for (NSDictionary *trackInfo in trackDict) {
-                 SATrack *track = [[SATrack alloc] init];
-                 
-                 track.name = [trackInfo objectForKey:@"name"];
-                 track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
-                 track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
-                 track.identifier = [trackInfo objectForKey:@"id"];
-                 [tracks addObject:track];
-             }
+             NSArray *tracks = [self getTracksFromSpotifyTrackObject:responseObject];
 //             NSLog(@"%@", responseObject);
 //             NSError *error;
 //             NSArray *tracks = [MTLJSONAdapter modelsOfClass:[SATrack class] fromJSONArray:[responseObject objectForKey:@"items"] error:&error];
@@ -187,7 +175,7 @@
              }
              
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
+             NSLog(@"Loading album viewer Error: %@", error);
              
              if (failure) {
                  failure(error);
@@ -197,44 +185,81 @@
     
 }
 
-- (void) getAlbumsWithTracksContainingQuery:(NSString *)query
-                                    success:(void (^)(NSArray *albums))success
+- (void) getAlbumWithTrackID:(NSString *)trackID
+                                    success:(void (^)(SAAlbum *album))success
                                     failure:(void (^)(NSError *error))failure {
     
-    NSString *host = @"https://api.spotify.com/v1/search?type=track&q=";
-    NSString *searchURL = [host stringByAppendingString:query];
+    NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/tracks/%@", trackID];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSMutableArray *albums = [[NSMutableArray alloc] init];
+             SAAlbum *album = [[SAAlbum alloc] init];
+             NSDictionary* albumInfo = [responseObject objectForKey:@"album"];
+             album.albumName = [albumInfo objectForKey:@"name"];
+             album.identifier = [albumInfo objectForKey:@"id"];
              
-             NSArray *resultsArray =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
-             
-             for (NSDictionary *result in resultsArray) {
-                 SAAlbum *album = [[SAAlbum alloc] init];
-                 NSDictionary* albumInfo = [result objectForKey:@"album"];
-                 album.albumName = [albumInfo objectForKey:@"name"];
-                 album.identifier = [albumInfo objectForKey:@"id"];
-                 
-                 NSString *imageUrl = [[[albumInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
-                 album.imageURL = [NSURL URLWithString: imageUrl];
-                 
-                 [albums addObject:album];
-             }
+             NSString *imageUrl = [[[albumInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
+             album.imageURL = [NSURL URLWithString: imageUrl];
              
              if (success) {
-                 success(albums);
+                 success(album);
              }
              
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
+             NSLog(@"Album with track idError: %@", error);
              
              if (failure) {
                  failure(error);
              }
          }];
     
+}
+
+
+- (void) getTracksWithQuery:(NSString *)query
+                    success:(void (^)(NSArray *albums))success
+                    failure:(void (^)(NSError *error))failure {
+
+    NSString *host = @"https://api.spotify.com/v1/search?type=track&q=";
+    NSString *searchURL = [host stringByAppendingString:query];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:searchURL parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSArray *tracks = [self getTracksFromSpotifyTrackObject:responseObject];
+             
+             if (success) {
+                 success(tracks);
+             }
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Track query Error: %@", error);
+             
+             if (failure) {
+                 failure(error);
+             }
+         }];
+    
+}
+
+- (NSArray *) getTracksFromSpotifyTrackObject:(id) responseObject {
+    
+    NSMutableArray *tracks = [[NSMutableArray alloc] init];
+    
+    NSDictionary *trackDict =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
+    
+    for (NSDictionary *trackInfo in trackDict) {
+        SATrack *track = [[SATrack alloc] init];
+        
+        track.name = [trackInfo objectForKey:@"name"];
+        track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
+        track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
+        track.identifier = [trackInfo objectForKey:@"id"];
+        [tracks addObject:track];
+    }
+    
+    return [tracks copy];
 }
 
 

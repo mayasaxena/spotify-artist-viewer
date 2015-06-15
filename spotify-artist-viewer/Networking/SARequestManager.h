@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAAlbum.h"
 
 @interface SARequestManager : NSObject
 
@@ -27,9 +28,14 @@
                           success:(void (^)(NSArray *tracks, NSString *artistName))success
                           failure:(void (^)(NSError *error))failure;
 
-- (void) getAlbumsWithTracksContainingQuery:(NSString *)query
-                                    success:(void (^)(NSArray *albums))success
-                                    failure:(void (^)(NSError *error))failure;
+- (void) getTracksWithQuery:(NSString *)query
+                    success:(void (^)(NSArray *albums))success
+                    failure:(void (^)(NSError *error))failure;
+
+- (void) getAlbumWithTrackID:(NSString *)trackID
+                     success:(void (^)(SAAlbum *album))success
+                     failure:(void (^)(NSError *error))failure;
+
 
 
 @end

@@ -37,22 +37,19 @@ static NSInteger const kAlbumImageSize = 150;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.albumLabel.text = self.album.albumName;
     
-    [self.albumImage sd_setImageWithURL:self.album.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.albumImage.image = [self.albumImage.image imageScaledToHeight:kAlbumImageSize];
-    }];
-    
-    [[SARequestManager sharedManager] getAlbumTracksAndArtistNameWithAlbumID:self.album.identifier
-                                                        success:^(NSArray *tracks, NSString *artistName) {
-                                                            self.tracks = tracks;
-                                                            self.album.artistName = artistName;
-                                                            self.artistLabel.text = self.album.artistName;
-                                                            [self.tableView reloadData];
-                                                        }
-                                                        failure:^(NSError *error) {
-                                                            NSLog(@"%@",error);
-                                                        }];
+    if (self.album == nil) {
+        [[SARequestManager sharedManager] getAlbumWithTrackID:self.selectedTrackID
+                                                      success:^(SAAlbum *album) {
+                                                          self.album = album;
+                                                          NSLog(@"%@", album.identifier);
+                                                          [self loadAlbumView];
+                                                      } failure:^(NSError *error) {
+                                                          NSLog(@"%@",error);
+                                                      }];
+    } else {
+        [self loadAlbumView];
+    }
     
   
     
@@ -61,6 +58,31 @@ static NSInteger const kAlbumImageSize = 150;
 //    self.albumImage.layer.borderWidth = 3.0f;
 //    self.albumImage.layer.borderColor = [[UIColor grayColor] CGColor];
     
+}
+
+- (void) loadAlbumView {
+    self.albumLabel.text = self.album.albumName;
+    
+    [self.albumImage sd_setImageWithURL:self.album.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.albumImage.image = [self.albumImage.image imageScaledToHeight:kAlbumImageSize];
+    }];
+    
+    [[SARequestManager sharedManager] getAlbumTracksAndArtistNameWithAlbumID:self.album.identifier
+                                                                     success:^(NSArray *tracks, NSString *artistName) {
+                                                                         self.tracks = tracks;
+                                                                         self.album.artistName = artistName;
+                                                                         self.artistLabel.text = self.album.artistName;
+                                                                         [self.tableView reloadData];
+                                                                         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.selectedTrackNumber - 1 inSection:0];
+                                                                         if (self.selectedTrackNumber != 0) {
+                                                                             [self.tableView selectRowAtIndexPath:newIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                                                                         }
+
+                                                                     }
+                                                                     failure:^(NSError *error) {
+                                                                         NSLog(@"%@",error);
+                                                                     }];
+
 }
 
 
@@ -86,6 +108,10 @@ static NSInteger const kAlbumImageSize = 150;
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tracks count];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

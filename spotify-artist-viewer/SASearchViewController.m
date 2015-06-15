@@ -77,8 +77,8 @@ typedef NS_ENUM(NSInteger, SASearchType) {
         SAAlbum *album = self.results[indexPath.row];
         cell.textLabel.text = album.albumName;
     } else if (self.searchBar.selectedScopeButtonIndex == SATrackSearchType ) {
-        SAAlbum *album = self.results[indexPath.row];
-        cell.textLabel.text = album.albumName;
+        SATrack *track = self.results[indexPath.row];
+        cell.textLabel.text = track.name;
     }
     
     return cell;
@@ -98,21 +98,29 @@ typedef NS_ENUM(NSInteger, SASearchType) {
 #pragma mark - Navigation
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
     if ([segue.identifier  isEqual: @"showArtist"]) {
         SAArtistViewController* artistViewController = segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
         SAArtist *artist = self.results[indexPath.row];
         artistViewController.artist = artist;
         
     } else if ([segue.identifier isEqual:@"showAlbum"]) {
-        SAAlbumViewController* albumViewController = segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        SAAlbum *album = self.results[indexPath.row];
-        albumViewController.album = album;
+        if (self.searchBar.selectedScopeButtonIndex == SAAlbumSearchType) {
+            
+            SAAlbumViewController* albumViewController = segue.destinationViewController;
+            SAAlbum *album = self.results[indexPath.row];
+            albumViewController.album = album;
+            albumViewController.selectedTrackNumber = 0;
+            
+        } else if (self.searchBar.selectedScopeButtonIndex == SATrackSearchType) {
+            
+            SAAlbumViewController* albumViewController = segue.destinationViewController;
+            SATrack *track = self.results[indexPath.row];
+            albumViewController.selectedTrackNumber = track.number;
+            albumViewController.selectedTrackID = track.identifier;
+            albumViewController.album = nil;
+        }
     }
 }
 
@@ -163,9 +171,9 @@ typedef NS_ENUM(NSInteger, SASearchType) {
             
         } else if (self.searchBar.selectedScopeButtonIndex == SATrackSearchType) {
             
-            [[SARequestManager sharedManager] getAlbumsWithTracksContainingQuery:escapedSearchText
-                                                         success:^(NSArray *albums) {
-                                                             self.results = albums;
+            [[SARequestManager sharedManager] getTracksWithQuery:escapedSearchText
+                                                         success:^(NSArray *tracks) {
+                                                             self.results = tracks;
                                                              [self.tableView reloadData];
                                                          }
                                                          failure:^(NSError *error) {

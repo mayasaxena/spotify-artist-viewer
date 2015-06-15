@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumImage;
 @property (weak, nonatomic) IBOutlet UILabel *albumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
-
+@property NSInteger selectedTrackNumber;
+@property (nonatomic, strong) NSString *selectedTrackID;
 
 @end

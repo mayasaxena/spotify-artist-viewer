@@ -10,7 +10,7 @@
         <scene sceneID="rSx-mi-pj8">
             <objects>
                 <tableViewController id="Evx-U1-BXd" customClass="SASearchViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="sdM-w7-ouW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="sdM-w7-ouW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -422,12 +422,12 @@
                                 <exclude reference="puQ-l1-UIy"/>
                                 <exclude reference="99p-IK-5qW"/>
                                 <exclude reference="Esu-iQ-68r"/>
-                                <exclude reference="uH4-JF-Gji"/>
                                 <exclude reference="XwA-S6-K1C"/>
                                 <exclude reference="wcO-pE-QdE"/>
                                 <exclude reference="JT2-4J-gQ1"/>
                                 <exclude reference="Rxt-xe-Ll5"/>
                                 <exclude reference="xLy-gh-7j1"/>
+                                <exclude reference="uH4-JF-Gji"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -454,12 +454,12 @@
                                 <include reference="puQ-l1-UIy"/>
                                 <include reference="99p-IK-5qW"/>
                                 <include reference="Esu-iQ-68r"/>
-                                <include reference="uH4-JF-Gji"/>
                                 <include reference="XwA-S6-K1C"/>
                                 <include reference="wcO-pE-QdE"/>
                                 <include reference="JT2-4J-gQ1"/>
                                 <include reference="Rxt-xe-Ll5"/>
                                 <include reference="xLy-gh-7j1"/>
+                                <include reference="uH4-JF-Gji"/>
                             </mask>
                         </variation>
                     </view>
@@ -474,7 +474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaY-Ja-e1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732.5" y="1197"/>
+            <point key="canvasLocation" x="1732" y="1197"/>
         </scene>
     </scenes>
 </document>
