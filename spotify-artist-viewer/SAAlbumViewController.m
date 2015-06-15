@@ -88,6 +88,10 @@ static NSInteger const kAlbumImageSize = 150;
     return [self.tracks count];
 }
 
+
+
+#pragma mark - Formatting
+
 - (NSString *) formatInterval: (NSTimeInterval) interval{
     unsigned long milliseconds = interval;
     unsigned long seconds = milliseconds / 1000;

@@ -27,4 +27,9 @@
                           success:(void (^)(NSArray *tracks, NSString *artistName))success
                           failure:(void (^)(NSError *error))failure;
 
+- (void) getAlbumsWithTracksContainingQuery:(NSString *)query
+                                    success:(void (^)(NSArray *albums))success
+                                    failure:(void (^)(NSError *error))failure;
+
+
 @end

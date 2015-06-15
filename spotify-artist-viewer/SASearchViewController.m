@@ -12,6 +12,13 @@
 #import "SAAlbum.h"
 #import "SAAlbumViewController.h"
 #import "SARequestManager.h"
+#import "SATrack.h"
+
+typedef NS_ENUM(NSInteger, SASearchType) {
+    SAArtistSearchType = 0,
+    SAAlbumSearchType = 1,
+    SATrackSearchType = 2
+};
 
 @interface SASearchViewController () <UISearchBarDelegate>
 
@@ -23,13 +30,11 @@
 
 @implementation SASearchViewController
 
-enum {
-    Artist = 0,
-    Album = 1,
-};
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     
 }
@@ -65,10 +70,13 @@ enum {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.textColor = [UIColor whiteColor];
     
-    if (self.searchBar.selectedScopeButtonIndex == Artist) {
+    if (self.searchBar.selectedScopeButtonIndex == SAArtistSearchType) {
         SAArtist *artist = self.results[indexPath.row];
         cell.textLabel.text = artist.name;
-    } else if (self.searchBar.selectedScopeButtonIndex == Album) {
+    } else if (self.searchBar.selectedScopeButtonIndex == SAAlbumSearchType ) {
+        SAAlbum *album = self.results[indexPath.row];
+        cell.textLabel.text = album.albumName;
+    } else if (self.searchBar.selectedScopeButtonIndex == SATrackSearchType ) {
         SAAlbum *album = self.results[indexPath.row];
         cell.textLabel.text = album.albumName;
     }
@@ -77,9 +85,10 @@ enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.searchBar.selectedScopeButtonIndex == Artist) {
+    if (self.searchBar.selectedScopeButtonIndex == SAArtistSearchType) {
         [self performSegueWithIdentifier:@"showArtist" sender:self];
-    } else if (self.searchBar.selectedScopeButtonIndex == Album) {
+    } else if (self.searchBar.selectedScopeButtonIndex == SAAlbumSearchType ||
+               self.searchBar.selectedScopeButtonIndex == SATrackSearchType) {
         [self performSegueWithIdentifier:@"showAlbum" sender:self];
 
     }
@@ -130,7 +139,7 @@ enum {
         
         NSString *escapedSearchText = [[searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
-        if (self.searchBar.selectedScopeButtonIndex == Artist) {
+        if (self.searchBar.selectedScopeButtonIndex == SAArtistSearchType) {
             
             [[SARequestManager sharedManager] getArtistsWithQuery:escapedSearchText
                                                           success:^(NSArray *artists) {
@@ -141,7 +150,7 @@ enum {
                                                               NSLog(@"%@",error);
                                                           }];
             
-        } else if (self.searchBar.selectedScopeButtonIndex == Album) {
+        } else if (self.searchBar.selectedScopeButtonIndex == SAAlbumSearchType) {
             
             [[SARequestManager sharedManager] getAlbumsWithQuery:escapedSearchText
                                                           success:^(NSArray *albums) {
@@ -152,11 +161,21 @@ enum {
                                                               NSLog(@"%@",error);
                                                           }];
             
-        }
+        } else if (self.searchBar.selectedScopeButtonIndex == SATrackSearchType) {
+            
+            [[SARequestManager sharedManager] getAlbumsWithTracksContainingQuery:escapedSearchText
+                                                         success:^(NSArray *albums) {
+                                                             self.results = albums;
+                                                             [self.tableView reloadData];
+                                                         }
+                                                         failure:^(NSError *error) {
+                                                             NSLog(@"%@",error);
+                                                         }];
         
-    } else {
-        self.results = nil;
-        [self.tableView reloadData];
+        } else {
+            self.results = nil;
+            [self.tableView reloadData];
+        }
     }
 }
 

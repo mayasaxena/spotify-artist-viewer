@@ -197,6 +197,46 @@
     
 }
 
+- (void) getAlbumsWithTracksContainingQuery:(NSString *)query
+                                    success:(void (^)(NSArray *albums))success
+                                    failure:(void (^)(NSError *error))failure {
+    
+    NSString *host = @"https://api.spotify.com/v1/search?type=track&q=";
+    NSString *searchURL = [host stringByAppendingString:query];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:searchURL parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSMutableArray *albums = [[NSMutableArray alloc] init];
+             
+             NSArray *resultsArray =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
+             
+             for (NSDictionary *result in resultsArray) {
+                 SAAlbum *album = [[SAAlbum alloc] init];
+                 NSDictionary* albumInfo = [result objectForKey:@"album"];
+                 album.albumName = [albumInfo objectForKey:@"name"];
+                 album.identifier = [albumInfo objectForKey:@"id"];
+                 
+                 NSString *imageUrl = [[[albumInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
+                 album.imageURL = [NSURL URLWithString: imageUrl];
+                 
+                 [albums addObject:album];
+             }
+             
+             if (success) {
+                 success(albums);
+             }
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+             
+             if (failure) {
+                 failure(error);
+             }
+         }];
+    
+}
+
 
 
 @end

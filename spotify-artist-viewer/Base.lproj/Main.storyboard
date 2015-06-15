@@ -27,6 +27,7 @@
                             <scopeButtonTitles>
                                 <string>Artist</string>
                                 <string>Album</string>
+                                <string>Track</string>
                             </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="Evx-U1-BXd" id="P4Z-z6-pKI"/>
