@@ -145,18 +145,29 @@
     
 }
 
-- (void) getAlbumTracksWithAlbumID:(NSString *)albumID
-                          success:(void (^)(NSArray *tracks))success
+- (void) getAlbumTracksAndArtistNameWithAlbumID:(NSString *)albumID
+                          success:(void (^)(NSArray *tracks, NSString *artistName))success
                           failure:(void (^)(NSError *error))failure {
     
-    NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/albums/%@/tracks", albumID];
+    NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/albums/%@", albumID];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSMutableString *name = [NSMutableString new];
+             NSArray *artists =[responseObject objectForKey:@"artists"];
+             for (NSDictionary *artistInfo in artists) {
+                 if (artistInfo != [artists lastObject]) {
+                     [name appendFormat:@"%@, ", [artistInfo objectForKey:@"name"]];
+                 } else {
+                     [name appendString:[artistInfo objectForKey:@"name"]];
+                 }
+                 
+             }
+             
              NSMutableArray *tracks = [[NSMutableArray alloc] init];
              
-             NSDictionary *trackDict =[responseObject objectForKey:@"items"];
+             NSDictionary *trackDict =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
              
              for (NSDictionary *trackInfo in trackDict) {
                  SATrack *track = [[SATrack alloc] init];
@@ -164,14 +175,15 @@
                  track.name = [trackInfo objectForKey:@"name"];
                  track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
                  track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
+                 track.identifier = [trackInfo objectForKey:@"id"];
                  [tracks addObject:track];
              }
 //             NSLog(@"%@", responseObject);
 //             NSError *error;
 //             NSArray *tracks = [MTLJSONAdapter modelsOfClass:[SATrack class] fromJSONArray:[responseObject objectForKey:@"items"] error:&error];
              if (success) {
-                 NSLog(@"%lu", (unsigned long)[tracks count]);
-                 success(tracks);
+//                 NSLog(@"%lu", (unsigned long)[tracks count]);
+                 success(tracks, [name copy]);
              }
              
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

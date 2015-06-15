@@ -38,21 +38,23 @@ static NSInteger const kAlbumImageSize = 150;
     [super viewDidLoad];
     
     self.albumLabel.text = self.album.albumName;
-    self.artistLabel.text = self.album.artistName;
     
     [self.albumImage sd_setImageWithURL:self.album.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.albumImage.image = [self.albumImage.image imageScaledToHeight:kAlbumImageSize];
     }];
     
-    [[SARequestManager sharedManager] getAlbumTracksWithAlbumID:self.album.identifier
-                                                        success:^(NSArray *tracks) {
+    [[SARequestManager sharedManager] getAlbumTracksAndArtistNameWithAlbumID:self.album.identifier
+                                                        success:^(NSArray *tracks, NSString *artistName) {
                                                             self.tracks = tracks;
+                                                            self.album.artistName = artistName;
+                                                            self.artistLabel.text = self.album.artistName;
                                                             [self.tableView reloadData];
                                                         }
                                                         failure:^(NSError *error) {
                                                             NSLog(@"%@",error);
                                                         }];
-
+    
+  
     
 //    self.albumImage.layer.cornerRadius = self.albumImage.frame.size.width / 4;
 //    self.albumImage.clipsToBounds = YES;
@@ -73,7 +75,7 @@ static NSInteger const kAlbumImageSize = 150;
     cell.songLabel.textColor = [UIColor whiteColor];
     cell.songLabel.text = ((SATrack *)self.tracks[indexPath.row]).name;
     cell.durationLabel.textColor = [UIColor whiteColor];
-    cell.durationLabel.text = [NSString stringWithFormat:@"%ld", ((SATrack *)self.tracks[indexPath.row]).duration];
+    cell.durationLabel.text = [self formatInterval:((SATrack *)self.tracks[indexPath.row]).duration];
     
     return cell;
 }
@@ -84,6 +86,27 @@ static NSInteger const kAlbumImageSize = 150;
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tracks count];
+}
+
+- (NSString *) formatInterval: (NSTimeInterval) interval{
+    unsigned long milliseconds = interval;
+    unsigned long seconds = milliseconds / 1000;
+    milliseconds %= 1000;
+    seconds += (int) roundf(milliseconds / 1000.0);
+    unsigned long minutes = seconds / 60;
+    seconds %= 60;
+    unsigned long hours = minutes / 60;
+    minutes %= 60;
+    
+    NSMutableString * result = [NSMutableString new];
+    
+    if(hours)
+        [result appendFormat: @"%lu:", hours];
+    
+    [result appendFormat: @"%2lu:", minutes];
+    [result appendFormat: @"%.2lu", seconds];
+    
+    return result;
 }
 
 

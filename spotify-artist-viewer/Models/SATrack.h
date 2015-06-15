@@ -12,8 +12,11 @@
 @interface SATrack : MTLModel
 
 @property (nonatomic, strong) NSString *name;
+
 @property NSInteger number;
 @property NSInteger duration;
+@property (nonatomic, strong) NSString *identifier;
+
 
 
 @end

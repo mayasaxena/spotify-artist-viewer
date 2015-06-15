@@ -23,8 +23,8 @@
                    success:(void (^)(NSArray *albums))success
                    failure:(void (^)(NSError *error))failure;
 
-- (void) getAlbumTracksWithAlbumID:(NSString *)albumID
-                          success:(void (^)(NSArray *tracks))success
+- (void) getAlbumTracksAndArtistNameWithAlbumID:(NSString *)albumID
+                          success:(void (^)(NSArray *tracks, NSString *artistName))success
                           failure:(void (^)(NSError *error))failure;
 
 @end
