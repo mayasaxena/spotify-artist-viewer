@@ -190,13 +190,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             SAAlbum *album = [[SAAlbum alloc] init];
-             NSDictionary* albumInfo = [responseObject objectForKey:@"album"];
-             album.albumName = [albumInfo objectForKey:@"name"];
-             album.identifier = [albumInfo objectForKey:@"id"];
-             
-             NSString *imageUrl = [[[albumInfo objectForKey:@"images"] firstObject] objectForKey:@"url"];
-             album.imageURL = [NSURL URLWithString: imageUrl];
+//             SAAlbum *album = [[SAAlbum alloc] init];
+             NSDictionary* albumDictionary = [responseObject objectForKey:@"album"];
+             SAAlbum *album = [MTLJSONAdapter modelOfClass:[SAAlbum class] fromJSONDictionary:albumDictionary error:nil];
              
              if (success) {
                  success(album);
@@ -240,16 +236,11 @@ NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/se
 
 - (NSArray *) getTracksFromSpotifyTrackObject:(id) responseObject {
     
-    NSMutableArray *tracks = [[NSMutableArray alloc] init];
+    NSArray *trackArray =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
     
-    NSDictionary *trackDict =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
-    
-    for (NSDictionary *trackInfo in trackDict) {
-        [tracks addObject:[MTLJSONAdapter modelOfClass:[SATrack class] fromJSONDictionary:trackInfo error:nil]];
-    }
-    
-    return [tracks copy];
+    return [MTLJSONAdapter modelsOfClass:[SATrack class] fromJSONArray:trackArray error:nil];
 }
+
 
 
 

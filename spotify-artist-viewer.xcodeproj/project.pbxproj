@@ -19,6 +19,7 @@
 		A51289B81B2B23D500A83D28 /* SATrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289B71B2B23D500A83D28 /* SATrack.m */; };
 		A51289BB1B2B61B500A83D28 /* SATrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */; };
 		A51289BE1B2B697400A83D28 /* UIImage+SAImageScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = A51289BD1B2B697400A83D28 /* UIImage+SAImageScaling.m */; };
+		A56993601B2F6A0B00F00F5F /* SAImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A569935F1B2F6A0B00F00F5F /* SAImage.m */; };
 		A5A5ECD81B2A1254006C676D /* SAAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */; };
 		A5A5ECDB1B2A173B006C676D /* SAAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A5ECDA1B2A173B006C676D /* SAAlbum.m */; };
 		A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DDCECA1B275FE900EF5F76 /* SAArtistViewController.m */; };
@@ -60,6 +61,8 @@
 		A51289BA1B2B61B500A83D28 /* SATrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATrackTableViewCell.m; sourceTree = "<group>"; };
 		A51289BC1B2B697400A83D28 /* UIImage+SAImageScaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SAImageScaling.h"; sourceTree = "<group>"; };
 		A51289BD1B2B697400A83D28 /* UIImage+SAImageScaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SAImageScaling.m"; sourceTree = "<group>"; };
+		A569935E1B2F6A0B00F00F5F /* SAImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAImage.h; path = Models/SAImage.h; sourceTree = "<group>"; };
+		A569935F1B2F6A0B00F00F5F /* SAImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SAImage.m; path = Models/SAImage.m; sourceTree = "<group>"; };
 		A5A5ECD61B2A1254006C676D /* SAAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumViewController.h; sourceTree = "<group>"; };
 		A5A5ECD71B2A1254006C676D /* SAAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumViewController.m; sourceTree = "<group>"; };
 		A5A5ECD91B2A173B006C676D /* SAAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAAlbum.h; path = Models/SAAlbum.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				A5A5ECDA1B2A173B006C676D /* SAAlbum.m */,
 				A51289B61B2B23D500A83D28 /* SATrack.h */,
 				A51289B71B2B23D500A83D28 /* SATrack.m */,
+				A569935E1B2F6A0B00F00F5F /* SAImage.h */,
+				A569935F1B2F6A0B00F00F5F /* SAImage.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				TargetAttributes = {
 					2E7674261B26766200336867 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = THP5EV5EJ9;
 					};
 					2E76743F1B26766200336867 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -349,6 +355,7 @@
 				A5DDCECB1B275FE900EF5F76 /* SAArtistViewController.m in Sources */,
 				A51289B81B2B23D500A83D28 /* SATrack.m in Sources */,
 				A5DDCECE1B27769500EF5F76 /* SASearchViewController.m in Sources */,
+				A56993601B2F6A0B00F00F5F /* SAImage.m in Sources */,
 				2E7674301B26766200336867 /* AppDelegate.m in Sources */,
 				A51289BB1B2B61B500A83D28 /* SATrackTableViewCell.m in Sources */,
 				2E76742D1B26766200336867 /* main.m in Sources */,
@@ -481,9 +488,13 @@
 			baseConfigurationReference = 24D273ADE25F1BCB609FBA1B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "spotify-artist-viewer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -492,9 +503,13 @@
 			baseConfigurationReference = 44D3B178536DF8A3A6A17C08 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "spotify-artist-viewer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

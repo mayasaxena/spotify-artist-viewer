@@ -10,4 +10,13 @@
 
 @implementation SAAlbum
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"albumName": @"name",
+             @"imageURL": @"images[0].url",
+             @"identifier": @"id"
+             };
+}
+
+
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 
-@interface SAAlbum : NSObject
+@interface SAAlbum : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic, strong) NSString *albumName;
 @property (nonatomic, strong) NSString *artistName;
