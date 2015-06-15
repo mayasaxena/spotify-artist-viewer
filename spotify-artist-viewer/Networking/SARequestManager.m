@@ -30,12 +30,11 @@
 }
 
 - (void) getArtistsWithQuery:(NSString *)query
-                    success:(void (^)(NSArray *artists))success
-                    failure:(void (^)(NSError *error))failure {
+                     andPage:(NSString *) page
+                     success:(void (^)(NSArray *artists))success
+                     failure:(void (^)(NSError *error))failure {
     
-    NSString *host = @"https://api.spotify.com/v1/search?type=artist&q=";
-    NSString *searchURL = [host stringByAppendingString:query];
-    
+   NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?offset=%@&limit=20&type=artist&q=%@", page, query];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -71,8 +70,8 @@
 }
 
 - (void) getArtistBiographyWithID:(NSString *)artistID
-                        success:(void (^)(NSString *artistBio))success
-                        failure:(void (^)(NSError *error))failure {
+                          success:(void (^)(NSString *artistBio))success
+                          failure:(void (^)(NSError *error))failure {
     
     
     NSString *host = @"http://developer.echonest.com/api/v4/artist/biographies?api_key=4JKZ9YVDBABLYS8ZP&id=spotify:artist:";
@@ -106,11 +105,11 @@
 }
 
 - (void) getAlbumsWithQuery:(NSString *)query
-                   success:(void (^)(NSArray *albums))success
-                   failure:(void (^)(NSError *error))failure {
+                    andPage:(NSString *) page
+                    success:(void (^)(NSArray *albums))success
+                    failure:(void (^)(NSError *error))failure {
     
-    NSString *host = @"https://api.spotify.com/v1/search?type=album&q=";
-    NSString *searchURL = [host stringByAppendingString:query];
+    NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?offset=%@&limit=20&type=album&q=%@", page, query];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
@@ -166,11 +165,8 @@
              }
              
              NSArray *tracks = [self getTracksFromSpotifyTrackObject:responseObject];
-//             NSLog(@"%@", responseObject);
-//             NSError *error;
-//             NSArray *tracks = [MTLJSONAdapter modelsOfClass:[SATrack class] fromJSONArray:[responseObject objectForKey:@"items"] error:&error];
+
              if (success) {
-//                 NSLog(@"%lu", (unsigned long)[tracks count]);
                  success(tracks, [name copy]);
              }
              
@@ -218,12 +214,11 @@
 
 
 - (void) getTracksWithQuery:(NSString *)query
+                    andPage:(NSString *) page
                     success:(void (^)(NSArray *albums))success
                     failure:(void (^)(NSError *error))failure {
 
-    NSString *host = @"https://api.spotify.com/v1/search?type=track&q=";
-    NSString *searchURL = [host stringByAppendingString:query];
-    
+NSString *searchURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?offset=%@&limit=20&type=track&q=%@", page, query];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -250,13 +245,7 @@
     NSDictionary *trackDict =[[responseObject objectForKey:@"tracks"] objectForKey:@"items"];
     
     for (NSDictionary *trackInfo in trackDict) {
-        SATrack *track = [[SATrack alloc] init];
-        
-        track.name = [trackInfo objectForKey:@"name"];
-        track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
-        track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
-        track.identifier = [trackInfo objectForKey:@"id"];
-        [tracks addObject:track];
+        [tracks addObject:[MTLJSONAdapter modelOfClass:[SATrack class] fromJSONDictionary:trackInfo error:nil]];
     }
     
     return [tracks copy];

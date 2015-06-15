@@ -13,22 +13,25 @@
 + (instancetype)sharedManager;
 
 - (void) getArtistsWithQuery:(NSString *)query
-                    success:(void (^)(NSArray *artists))success
-                    failure:(void (^)(NSError *error))failure;
+                     andPage:(NSString *) page
+                     success:(void (^)(NSArray *artists))success
+                     failure:(void (^)(NSError *error))failure;
 
 - (void) getArtistBiographyWithID:(NSString*)artistID
-                         success:(void (^)(NSString *artistBio))success
-                         failure:(void (^)(NSError *error))failure;
-
-- (void) getAlbumsWithQuery:(NSString *)query
-                   success:(void (^)(NSArray *albums))success
-                   failure:(void (^)(NSError *error))failure;
-
-- (void) getAlbumTracksAndArtistNameWithAlbumID:(NSString *)albumID
-                          success:(void (^)(NSArray *tracks, NSString *artistName))success
+                          success:(void (^)(NSString *artistBio))success
                           failure:(void (^)(NSError *error))failure;
 
+- (void) getAlbumsWithQuery:(NSString *)query
+                    andPage:(NSString *) page
+                    success:(void (^)(NSArray *albums))success
+                    failure:(void (^)(NSError *error))failure;
+
+- (void) getAlbumTracksAndArtistNameWithAlbumID:(NSString *)albumID
+                                        success:(void (^)(NSArray *tracks, NSString *artistName))success
+                                        failure:(void (^)(NSError *error))failure;
+
 - (void) getTracksWithQuery:(NSString *)query
+                    andPage:(NSString *) page
                     success:(void (^)(NSArray *albums))success
                     failure:(void (^)(NSError *error))failure;
 

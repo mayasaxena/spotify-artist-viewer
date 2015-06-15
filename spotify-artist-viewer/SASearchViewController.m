@@ -145,11 +145,13 @@ typedef NS_ENUM(NSInteger, SASearchType) {
     [self.tableView reloadData];
     if ([searchText length] > 0) {
         
+        NSString *page = @"0";
         NSString *escapedSearchText = [[searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
         if (self.searchBar.selectedScopeButtonIndex == SAArtistSearchType) {
             
             [[SARequestManager sharedManager] getArtistsWithQuery:escapedSearchText
+                                                          andPage:page
                                                           success:^(NSArray *artists) {
                                                               self.results = artists;
                                                               [self.tableView reloadData];
@@ -161,6 +163,7 @@ typedef NS_ENUM(NSInteger, SASearchType) {
         } else if (self.searchBar.selectedScopeButtonIndex == SAAlbumSearchType) {
             
             [[SARequestManager sharedManager] getAlbumsWithQuery:escapedSearchText
+                                                         andPage:page
                                                           success:^(NSArray *albums) {
                                                               self.results = albums;
                                                               [self.tableView reloadData];
@@ -172,6 +175,7 @@ typedef NS_ENUM(NSInteger, SASearchType) {
         } else if (self.searchBar.selectedScopeButtonIndex == SATrackSearchType) {
             
             [[SARequestManager sharedManager] getTracksWithQuery:escapedSearchText
+                                                         andPage:page
                                                          success:^(NSArray *tracks) {
                                                              self.results = tracks;
                                                              [self.tableView reloadData];

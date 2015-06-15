@@ -14,14 +14,10 @@
     return @{
              @"name": @"name",
              @"number": @"track_number",
-             @"duration": @"duration_ms"
+             @"duration": @"duration_ms",
+             @"identifier": @"id"
              };
 }
 
-+ (NSValueTransformer *)appActionsJSONTransformer
-{
-    // tell Mantle to populate appActions property with an array of ChoosyAppAction objects
-    return [MTLJSONAdapter arrayTransformerWithModelClass:[SATrack class]];
-}
 
 @end

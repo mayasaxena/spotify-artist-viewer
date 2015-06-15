@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-@interface SATrack : MTLModel
+@interface SATrack : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic, strong) NSString *name;
-
 @property NSInteger number;
 @property NSInteger duration;
 @property (nonatomic, strong) NSString *identifier;
