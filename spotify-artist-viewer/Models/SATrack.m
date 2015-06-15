@@ -12,7 +12,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"name": @"items.name",
+             @"name": @"name",
              @"number": @"track_number",
              @"duration": @"duration_ms"
              };

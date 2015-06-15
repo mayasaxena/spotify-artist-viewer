@@ -154,20 +154,21 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//             NSMutableArray *tracks = [[NSMutableArray alloc] init];
+             NSMutableArray *tracks = [[NSMutableArray alloc] init];
              
-//             NSDictionary *trackDict =[responseObject objectForKey:@"items"];
-//             
-//             for (NSDictionary *trackInfo in trackDict) {
-//                 SATrack *track = [[SATrack alloc] init];
-//                 
-//                 track.name = [trackInfo objectForKey:@"name"];
-//                 track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
-//                 track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
-//                 [tracks addObject:track];
-//             }
+             NSDictionary *trackDict =[responseObject objectForKey:@"items"];
              
-             NSArray *tracks = [MTLJSONAdapter modelsOfClass:[SATrack class] fromJSONArray:responseObject error:nil];
+             for (NSDictionary *trackInfo in trackDict) {
+                 SATrack *track = [[SATrack alloc] init];
+                 
+                 track.name = [trackInfo objectForKey:@"name"];
+                 track.number = [[trackInfo objectForKey:@"track_number"] integerValue];
+                 track.duration = [[trackInfo objectForKey:@"duration_ms"] integerValue];
+                 [tracks addObject:track];
+             }
+//             NSLog(@"%@", responseObject);
+//             NSError *error;
+//             NSArray *tracks = [MTLJSONAdapter modelsOfClass:[SATrack class] fromJSONArray:[responseObject objectForKey:@"items"] error:&error];
              if (success) {
                  NSLog(@"%lu", (unsigned long)[tracks count]);
                  success(tracks);
