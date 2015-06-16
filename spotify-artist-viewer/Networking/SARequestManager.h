@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SAAlbum.h"
+
+@class SAAlbum;
 
 @interface SARequestManager : NSObject
 

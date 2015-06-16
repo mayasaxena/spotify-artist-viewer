@@ -190,9 +190,15 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:searchURL parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//             SAAlbum *album = [[SAAlbum alloc] init];
              NSDictionary* albumDictionary = [responseObject objectForKey:@"album"];
-             SAAlbum *album = [MTLJSONAdapter modelOfClass:[SAAlbum class] fromJSONDictionary:albumDictionary error:nil];
+//             SAAlbum *album = [MTLJSONAdapter modelOfClass:[SAAlbum class] fromJSONDictionary:albumDictionary error:nil];
+             SAAlbum *album = [[SAAlbum alloc] init];
+             
+             album.albumName = [albumDictionary objectForKey:@"name"];
+             album.identifier = [albumDictionary objectForKey:@"id"];
+             
+             NSString *imageUrl = [[[albumDictionary objectForKey:@"images"] firstObject] objectForKey:@"url"];
+             album.imageURL = [NSURL URLWithString: imageUrl];
              
              if (success) {
                  success(album);
